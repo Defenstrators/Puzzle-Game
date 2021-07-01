@@ -19,8 +19,8 @@ public class PlayerMovement : MonoBehaviour
     float cameraRotation;
 
 
-    public GameObject firstPersonLocation;
-    public GameObject thirdPersonLocation;
+    public GameObject firstPersonCamera;
+    public GameObject thirdPersonCamera;
 
     bool isFirstPerson;
 
@@ -35,16 +35,20 @@ public class PlayerMovement : MonoBehaviour
     void Update() 
     { 
          CameraMovement();
-         if(Input.GetKeyDown(KeyCode.LeftControl)) 
-         {
-             Camera.main.transform.position = head.transform.position; // when ctrl is preessed, move the camera to the head
-             isFirstPerson = true;
-         }
-         if(Input.GetKeyUp(KeyCode.LeftControl))
-         {
-             Camera.main.transform.position = thirdPersonLocation.transform.position; // when letting go of ctrl, move the camera back to the origional spot
-             isFirstPerson = false;
-         }
+        //  if(Input.GetKeyDown(KeyCode.LeftControl)) 
+        //  {
+        //       // when ctrl is preessed, move the camera to the head
+        //      firstPersonCamera.SetActive(true);
+        //      thirdPersonCamera.SetActive(false); 
+        //      isFirstPerson = true;
+        //  }
+        //  if(Input.GetKeyUp(KeyCode.LeftControl))
+        //  {
+        //      firstPersonCamera.SetActive(false);
+        //      thirdPersonCamera.SetActive(true);
+        //       // when letting go of ctrl, move the camera back to the origional spot
+        //      isFirstPerson = false;
+        //  }
          if(!isFirstPerson) // if not in first person, do movement
          {
              Movement();
@@ -52,12 +56,12 @@ public class PlayerMovement : MonoBehaviour
     }
     void Movement()
     {
-        bool isPlayerGrounded = controller.isGrounded;
-        if(isPlayerGrounded) canJump = true;
+        
+        if(controller.isGrounded) canJump = true;
 
         if(canJump && playerVelocity.y < 0) // 
         {
-            //playerVelocity.y = 0f;
+            playerVelocity.y = 0f;
             
         }
      
@@ -87,7 +91,6 @@ public class PlayerMovement : MonoBehaviour
     {
         transform.Rotate(new Vector3(0, Input.GetAxis("Mouse X") * mouseSense, 0)); // this will rotate the player
         //head.transform.Rotate(new Vector3(-Input.GetAxis("Mouse Y") * mouseSense, 0, 0)); // this will move the head up and down
-
 
         cameraRotation += -Input.GetAxis("Mouse Y") * (mouseSense / Camera.main.aspect);
 
