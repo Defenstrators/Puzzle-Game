@@ -31,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
         controller = gameObject.GetComponent<CharacterController>();
 
         Cursor.lockState = CursorLockMode.Locked;
-        animator = gameObject.GetComponent<Animator>();
+        // animator = gameObject.GetComponent<Animator>();
     }
 
     void Update() 
@@ -73,14 +73,14 @@ public class PlayerMovement : MonoBehaviour
 
         controller.Move(move * moveSpeed);
 
-        if(Input.GetKey(KeyCode.W))
-        {
-            animator.SetBool("Walk", true);
-        }
-        if(Input.GetKeyUp(KeyCode.W))
-        {
-            animator.SetBool("Walk", false);
-        }
+        // if(Input.GetKey(KeyCode.W))
+        // {
+        //     animator.SetBool("Walk", true);
+        // }
+        // if(Input.GetKeyUp(KeyCode.W))
+        // {
+        //     animator.SetBool("Walk", false);
+        // }
         //Jumping
 
         if(Input.GetButtonDown("Jump") && canJump)
