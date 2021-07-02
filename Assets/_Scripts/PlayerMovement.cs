@@ -13,7 +13,7 @@ public class PlayerMovement : MonoBehaviour
     public GameObject head;
 
     Vector3 playerVelocity;
-    bool canJump;
+    public bool canJump;
 
     public float mouseSense;
     float cameraRotation;
@@ -24,6 +24,10 @@ public class PlayerMovement : MonoBehaviour
 
     bool isFirstPerson;
     Animator animator;
+    public float yLookLimitation;
+
+    public float coyoteTime;
+    float trueCoyoteTime;
 
 
     void Start() 
@@ -55,11 +59,27 @@ public class PlayerMovement : MonoBehaviour
          {
              Movement();
          }
+
+
+         if(controller.isGrounded)
+        {
+            canJump = true;
+            trueCoyoteTime = coyoteTime;
+        }
+        else
+        {
+            trueCoyoteTime -= Time.deltaTime;
+            if(trueCoyoteTime <= 0)
+            {
+                canJump = false;
+            }
+        }
     }
     void Movement()
     {
         
         if(controller.isGrounded) canJump = true;
+        //else canJump = false;
 
         if(canJump && playerVelocity.y < 0) // 
         {
@@ -73,16 +93,6 @@ public class PlayerMovement : MonoBehaviour
 
         controller.Move(move * moveSpeed);
 
-        // if(Input.GetKey(KeyCode.W))
-        // {
-        //     animator.SetBool("Walk", true);
-        // }
-        // if(Input.GetKeyUp(KeyCode.W))
-        // {
-        //     animator.SetBool("Walk", false);
-        // }
-        //Jumping
-
         if(Input.GetButtonDown("Jump") && canJump)
         {
             playerVelocity.y += Mathf.Sqrt(jumpHeight * -3f * gravity);
@@ -92,9 +102,6 @@ public class PlayerMovement : MonoBehaviour
        // Gravity
         playerVelocity.y += gravity * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime); 
-
-
-      
     }
     
     void CameraMovement()
@@ -104,8 +111,14 @@ public class PlayerMovement : MonoBehaviour
 
         cameraRotation += -Input.GetAxis("Mouse Y") * (mouseSense / Camera.main.aspect);
 
-        cameraRotation = Mathf.Clamp(cameraRotation, -90, 90);
+        cameraRotation = Mathf.Clamp(cameraRotation, -yLookLimitation, yLookLimitation);
 
         head.transform.localRotation = Quaternion.Euler(cameraRotation, 0, 0);
+    }
+
+   public void ChangeLookLimiters(int value)
+    {
+        yLookLimitation = value;
+        print("Changed Look Limters to: " + value);
     }
 }

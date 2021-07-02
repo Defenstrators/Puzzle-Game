@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class GravityGun : MonoBehaviour
 {
-   public GameObject target;
-   public Vector3 boxCastSize;
+   public GameObject MuzzlePoint;
+   public GameObject objectTarget;
    public float LaunchForce;
    public float range;
    bool hasGrabbedObject;
    GameObject grabbedObject;
+   public float objectFollowDelay;
+   public int cameraLookLimiter;
    
     void Update()
     {
@@ -18,34 +20,35 @@ public class GravityGun : MonoBehaviour
         {
             if(Input.GetButtonDown("Fire1"))
             {
-                grabbedObject.transform.parent = null;
                 grabbedObject = null;
                 hasGrabbedObject = false;
+                gameObject.GetComponentInParent<PlayerMovement>().ChangeLookLimiters(90);
             }
             if(Input.GetButtonDown("Fire2"))
             {
                 grabbedObject.gameObject.GetComponent<Rigidbody>().isKinematic = false;
-                grabbedObject.GetComponent<Rigidbody>().AddForce(target.transform.forward * LaunchForce);
-                grabbedObject.transform.parent = null;
+                grabbedObject.GetComponent<Rigidbody>().AddForce(MuzzlePoint.transform.forward * LaunchForce);
                 grabbedObject = null;
                 hasGrabbedObject = false;
+                gameObject.GetComponentInParent<PlayerMovement>().ChangeLookLimiters(90);
 
             }
+            grabbedObject.transform.position = Vector3.Lerp(grabbedObject.transform.position, objectTarget.transform.position, objectFollowDelay);
+            grabbedObject.transform.rotation = objectTarget.transform.rotation;
         }
         else
         {
              if(Input.GetButtonDown("Fire1"))
             {
                 RaycastHit hit;
-                if(Physics.BoxCast(target.transform.position, boxCastSize, target.transform.forward, out hit, target.transform.rotation, range))
+                if(Physics.Raycast(MuzzlePoint.transform.position, MuzzlePoint.transform.forward, out hit, range))
                 {
                     if(hit.transform.tag == "Interactable")
                     {
-                        hit.transform.position = target.transform.position;
-                        hit.transform.parent = target.transform;
                         grabbedObject = hit.transform.gameObject; 
                         hasGrabbedObject = true;
                         grabbedObject.gameObject.GetComponent<Rigidbody>().isKinematic = true; // we dont want the object to be affected by gravity when grabbed by the player;
+                        gameObject.GetComponentInParent<PlayerMovement>().ChangeLookLimiters(cameraLookLimiter);
                     }
                 }
             }
