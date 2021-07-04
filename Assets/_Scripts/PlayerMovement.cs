@@ -40,28 +40,10 @@ public class PlayerMovement : MonoBehaviour
 
     void Update() 
     { 
+         Movement();
          CameraMovement();
-        //  if(Input.GetKeyDown(KeyCode.LeftControl)) 
-        //  {
-        //       // when ctrl is preessed, move the camera to the head
-        //      firstPersonCamera.SetActive(true);
-        //      thirdPersonCamera.SetActive(false); 
-        //      isFirstPerson = true;
-        //  }
-        //  if(Input.GetKeyUp(KeyCode.LeftControl))
-        //  {
-        //      firstPersonCamera.SetActive(false);
-        //      thirdPersonCamera.SetActive(true);
-        //       // when letting go of ctrl, move the camera back to the origional spot
-        //      isFirstPerson = false;
-        //  }
-         if(!isFirstPerson) // if not in first person, do movement
-         {
-             Movement();
-         }
-
-
-         if(controller.isGrounded)
+         
+        if(controller.isGrounded)
         {
             canJump = true;
             trueCoyoteTime = coyoteTime;
@@ -116,9 +98,24 @@ public class PlayerMovement : MonoBehaviour
         head.transform.localRotation = Quaternion.Euler(cameraRotation, 0, 0);
     }
 
-   public void ChangeLookLimiters(int value)
+    public void ChangeLookLimiters(int value)
     {
         yLookLimitation = value;
         print("Changed Look Limters to: " + value);
     }
+
+    public void ChangePrespective(bool prespective)
+    {
+        if (prespective == true)
+        {
+              firstPersonCamera.SetActive(true);
+             thirdPersonCamera.SetActive(false); 
+        }
+        else
+        {
+              firstPersonCamera.SetActive(false);
+             thirdPersonCamera.SetActive(true);
+        }
+    }
 }
+
