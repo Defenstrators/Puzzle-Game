@@ -12,27 +12,33 @@ public class GravityGun : MonoBehaviour
    GameObject grabbedObject;
    public float objectFollowDelay;
    public int cameraLookLimiter;
-   public LineRenderer lineRenderer;
-
+   public LineRenderer lazerLineRenderer;
+   public LineRenderer DropLineRenderer;
    public Material laserMaterial; 
    public float movingMultiplyer;
+   public GameObject cube;
    AudioSource source;
    public AudioClip pickupSound;
    public AudioClip placeSound;
    public AudioClip fireSound;
-
     void Start() 
    {
        source = gameObject.GetComponent<AudioSource>();
    }
-   
     void Update()
     {
-        if(grabbedObject)
+        if(hasGrabbedObject)
         {
             grabbedObject.transform.position = Vector3.Lerp(grabbedObject.transform.position, objectTarget.transform.position, objectFollowDelay); //smoothly move the object to the objectTarget, so it doesnt jitter around and look unatural
             grabbedObject.transform.rotation = Quaternion.Lerp(grabbedObject.transform.rotation,objectTarget.transform.rotation, objectFollowDelay); 
-
+            RaycastHit rHit;
+            if(Physics.Raycast(grabbedObject.transform.position, -grabbedObject.transform.up, out rHit, 20))
+            {
+                Vector3 hitPoint = new Vector3(grabbedObject.transform.position.x, grabbedObject.transform.position.y - rHit.distance, grabbedObject.transform.position.z);
+                cube.transform.position = hitPoint;
+                DropLineRenderer.SetPosition(0, grabbedObject.transform.position);
+                DropLineRenderer.SetPosition(1, hitPoint);
+            }
             if(Input.GetButtonDown("Fire1"))
             {
                 grabbedObject.gameObject.GetComponent<Rigidbody>().isKinematic = false; //set kinematic to false, to renable the physics of the object
@@ -40,7 +46,9 @@ public class GravityGun : MonoBehaviour
                 hasGrabbedObject = false;
                 gameObject.GetComponentInParent<PlayerMovement>().ChangeLookLimiters(80); // set the player vertical look limiters to defult
                 source.PlayOneShot(placeSound); // play the placing sound
-                lineRenderer.enabled = true; // turn the line render back on
+                lazerLineRenderer.enabled = true; // turn the line render back on
+                DropLineRenderer.enabled = false;
+                cube.SetActive(false);
             }
             if(Input.GetButtonDown("Fire2"))
             {
@@ -51,7 +59,9 @@ public class GravityGun : MonoBehaviour
                 hasGrabbedObject = false;
                 gameObject.GetComponentInParent<PlayerMovement>().ChangeLookLimiters(80); // set the player vertical look limiters to defult
                 source.PlayOneShot(fireSound); // play the fire sound
-                lineRenderer.enabled = true; // turn the line render back on
+                lazerLineRenderer.enabled = true; // turn the line render back on
+                DropLineRenderer.enabled = false;
+                cube.SetActive(false);
             }
         }
         else
@@ -67,9 +77,12 @@ public class GravityGun : MonoBehaviour
                             hasGrabbedObject = true;
                             grabbedObject.gameObject.GetComponent<Rigidbody>().isKinematic = true; // we dont want the object to be affected by gravity when grabbed by the player;
                             gameObject.GetComponentInParent<PlayerMovement>().ChangeLookLimiters(cameraLookLimiter); // change the look limiters to constrained ones so the player cant ram the object under them.
-                            lineRenderer.enabled = false; // disable the lazer
+                            lazerLineRenderer.enabled = false; // disable the lazer
                             gameObject.GetComponentInParent<PlayerMovement>().ChangePrespective(false); // zoom the camera out
                             source.PlayOneShot(pickupSound); //play the pickup sound 
+                            cube.SetActive(true);
+                            DropLineRenderer.enabled = true;
+                            laserMaterial.color = Color.red;
                         }
 
                         laserMaterial.color = Color.green; // change the lazer to green, to let the player know they can pick somthing up.
@@ -86,8 +99,13 @@ public class GravityGun : MonoBehaviour
                     gameObject.GetComponentInParent<PlayerMovement>().ChangePrespective(false); // this will aim the camera out
                 }
             
-            lineRenderer.SetPosition(0, MuzzlePoint.transform.position); // set the positions of the line renderer
-            lineRenderer.SetPosition(1, objectTarget.transform.position);
+            lazerLineRenderer.SetPosition(0, MuzzlePoint.transform.position); // set the positions of the line renderer
+            lazerLineRenderer.SetPosition(1, objectTarget.transform.position);
         }
+    }
+    void OnDrawGizmos() 
+    {
+        lazerLineRenderer.SetPosition(0, MuzzlePoint.transform.position); 
+        lazerLineRenderer.SetPosition(1, objectTarget.transform.position);
     }
 }
