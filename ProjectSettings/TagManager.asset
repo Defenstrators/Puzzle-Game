@@ -4,7 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Interactable
+  - Heavy?
+  - PressurePlate
+  - Leaver
   layers:
   - Default
   - TransparentFX
