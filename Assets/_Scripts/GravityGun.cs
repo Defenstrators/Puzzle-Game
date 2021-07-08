@@ -32,7 +32,7 @@ public class GravityGun : MonoBehaviour
             grabbedObject.transform.position = Vector3.Lerp(grabbedObject.transform.position, objectTarget.transform.position, objectFollowDelay); //smoothly move the object to the objectTarget, so it doesnt jitter around and look unatural
             grabbedObject.transform.rotation = Quaternion.Lerp(grabbedObject.transform.rotation,objectTarget.transform.rotation, objectFollowDelay); 
             RaycastHit rHit;
-            if(Physics.Raycast(grabbedObject.transform.position, -grabbedObject.transform.up, out rHit, 20))
+            if(Physics.Raycast(grabbedObject.transform.position, -grabbedObject.transform.up, out rHit, Mathf.Infinity))
             {
                 Vector3 hitPoint = new Vector3(grabbedObject.transform.position.x, grabbedObject.transform.position.y - rHit.distance, grabbedObject.transform.position.z);
                 cube.transform.position = hitPoint;
@@ -41,27 +41,11 @@ public class GravityGun : MonoBehaviour
             }
             if(Input.GetButtonDown("Fire1"))
             {
-                grabbedObject.gameObject.GetComponent<Rigidbody>().isKinematic = false; //set kinematic to false, to renable the physics of the object
-                grabbedObject = null;
-                hasGrabbedObject = false;
-                gameObject.GetComponentInParent<PlayerMovement>().ChangeLookLimiters(80); // set the player vertical look limiters to defult
-                source.PlayOneShot(placeSound); // play the placing sound
-                lazerLineRenderer.enabled = true; // turn the line render back on
-                DropLineRenderer.enabled = false;
-                cube.SetActive(false);
+                DropObject(false);
             }
             if(Input.GetButtonDown("Fire2"))
             {
-                grabbedObject.gameObject.GetComponent<Rigidbody>().isKinematic = false; //set kinematic to false, to renable the physics of the object
-                if(Input.GetKey(KeyCode.W)) grabbedObject.GetComponent<Rigidbody>().AddForce(MuzzlePoint.transform.forward * (LaunchForce * movingMultiplyer)); // if the player is moving, apply a greater force to the grabbed object
-                else grabbedObject.GetComponent<Rigidbody>().AddForce(MuzzlePoint.transform.forward * LaunchForce); // else just use normal values
-                grabbedObject = null;
-                hasGrabbedObject = false;
-                gameObject.GetComponentInParent<PlayerMovement>().ChangeLookLimiters(80); // set the player vertical look limiters to defult
-                source.PlayOneShot(fireSound); // play the fire sound
-                lazerLineRenderer.enabled = true; // turn the line render back on
-                DropLineRenderer.enabled = false;
-                cube.SetActive(false);
+                DropObject(true);     
             }
         }
         else
@@ -107,5 +91,22 @@ public class GravityGun : MonoBehaviour
     {
         lazerLineRenderer.SetPosition(0, MuzzlePoint.transform.position); 
         lazerLineRenderer.SetPosition(1, objectTarget.transform.position);
+    }
+    public void DropObject(bool fireObject)
+    {
+                grabbedObject.gameObject.GetComponent<Rigidbody>().isKinematic = false; //set kinematic to false, to renable the physics of the object
+                if(fireObject)
+                {
+                     if(Input.GetKey(KeyCode.W)) grabbedObject.GetComponent<Rigidbody>().AddForce(MuzzlePoint.transform.forward * (LaunchForce * movingMultiplyer)); // if the player is moving, apply a greater force to the grabbed object
+                     else grabbedObject.GetComponent<Rigidbody>().AddForce(MuzzlePoint.transform.forward * LaunchForce); // else just use normal values
+                }
+                grabbedObject = null;
+                hasGrabbedObject = false;
+                gameObject.GetComponentInParent<PlayerMovement>().ChangeLookLimiters(80); // set the player vertical look limiters to defult
+                source.PlayOneShot(placeSound); // play the placing sound
+                lazerLineRenderer.enabled = true; // turn the line render back on
+                DropLineRenderer.enabled = false;
+                cube.SetActive(false);
+               
     }
 }
