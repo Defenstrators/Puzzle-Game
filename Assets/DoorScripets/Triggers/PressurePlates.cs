@@ -13,14 +13,14 @@ public class PressurePlates : MonoBehaviour {
     }
 
     private void OnCollisionStay(Collision other) {
-        if (other.collider.tag == "Player" || other.collider.tag == "Heavy?") {
+        if (other.collider.tag == "Player" || other.collider.tag == "Interactable") {
             animator.SetBool("isTriggered", true);
             isTriggered = true;
         }
     }
 
     private void OnCollisionExit(Collision other) {
-        if (other.collider.tag == "Player" || other.collider.tag == "Heavy?") {
+        if (other.collider.tag == "Player" || other.collider.tag == "Interactable") {
             animator.SetBool("isTriggered", false);
             isTriggered = false;
         }
