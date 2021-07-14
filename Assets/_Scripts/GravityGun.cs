@@ -84,13 +84,13 @@ public class GravityGun : MonoBehaviour
                 }
             
             lazerLineRenderer.SetPosition(0, MuzzlePoint.transform.position); // set the positions of the line renderer
-            lazerLineRenderer.SetPosition(1, objectTarget.transform.position);
+            lazerLineRenderer.SetPosition(1, MuzzlePoint.transform.position + (MuzzlePoint.transform.forward * range));
         }
     }
     void OnDrawGizmos() 
     {
         lazerLineRenderer.SetPosition(0, MuzzlePoint.transform.position); 
-        lazerLineRenderer.SetPosition(1, objectTarget.transform.position);
+        lazerLineRenderer.SetPosition(1, MuzzlePoint.transform.position + (MuzzlePoint.transform.forward * range));
     }
     public void DropObject(bool fireObject)
     {
