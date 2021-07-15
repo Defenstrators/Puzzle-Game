@@ -7,6 +7,9 @@ TagManager:
   - Heavy?
   - PressurePlate
   - Leaver
+  - Interactable
+  - Enviroment
+  - Moving Platform
   layers:
   - Default
   - TransparentFX
