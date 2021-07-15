@@ -2,14 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e900e11b-7d62-45bd-964c-ffe33c77ce4d" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Puzzle Game/.idea/codestream.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Puzzle Game/.idea/codestream.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Puzzle Game/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Puzzle Game/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/DoorScripets/Triggers/DoorTriggeredCheck.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/DoorScripets/Triggers/DoorTriggeredCheck.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/DoorScripets/Triggers/PressurePlates.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/DoorScripets/Triggers/PressurePlates.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Liam's Test Level.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Liam's Test Level.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Materials/Laser.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Materials/Laser.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/GraphicsSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/GraphicsSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.probuilder/Settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.probuilder/Settings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,8 +72,17 @@
       <workItem from="1625730965110" duration="517000" />
       <workItem from="1626167114103" duration="4902000" />
       <workItem from="1626256785214" duration="5236000" />
-      <workItem from="1626262281431" duration="309000" />
+      <workItem from="1626262281431" duration="411000" />
+      <workItem from="1626337682096" duration="3823000" />
     </task>
+    <task id="LOCAL-00001" summary="Redone Trigger system.">
+      <created>1626262628651</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1626262628651</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -85,7 +90,21 @@
   </component>
   <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
   <component name="UnityUnitTestConfiguration" currentTestLauncher="EditMode" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+    <MESSAGE value="Redone Trigger system." />
+    <option name="LAST_COMMIT_MESSAGE" value="Redone Trigger system." />
   </component>
 </project>
