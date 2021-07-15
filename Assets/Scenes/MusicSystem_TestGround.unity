@@ -233,6 +233,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicManager: {fileID: 0}
   songIndex: 0
+  enabledTags:
+  - Player
 --- !u!1 &988835317
 GameObject:
   m_ObjectHideFlags: 0
@@ -455,3 +457,4 @@ MonoBehaviour:
   audioClipOptions: []
   currentClipIndex: 0
   audioClipCount: 0
+  shouldShowTriggersInGame: 0
