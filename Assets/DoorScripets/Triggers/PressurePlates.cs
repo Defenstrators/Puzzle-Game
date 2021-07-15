@@ -5,26 +5,35 @@ using UnityEngine;
 
 public class PressurePlates : MonoBehaviour {
     
-    public bool isTriggered;        // Trigger Check
-    private Animator animator;
+    public bool isTriggered;          // Trigger Check.
+    private Animator animator;      // Animator of Button.
 
     private void Start() {
-        animator = GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
+        m_DoorTriggeredCheck = gameObject.GetComponentInParent<DoorTriggeredCheck>();
     }
 
-    private void OnCollisionStay(Collision other) {
-        if (other.collider.tag == "Player" || other.collider.tag == "Interactable") {
-            animator.SetBool("isTriggered", true);
-            isTriggered = true;
+    private DoorTriggeredCheck m_DoorTriggeredCheck;
+
+    private void OnTriggerEnter(Collider other) {
+        if (other.tag == "Interactable") {
+            m_DoorTriggeredCheck.DoorControl(0.5f);
+            animator.SetBool("ispressed", true);
+        } else if (other.tag == "Player") {
+            m_DoorTriggeredCheck.DoorControl(1f);
         }
     }
 
-    private void OnCollisionExit(Collision other) {
-        if (other.collider.tag == "Player" || other.collider.tag == "Interactable") {
-            animator.SetBool("isTriggered", false);
-            isTriggered = false;
-        }
+    private void OnTriggerExit(Collider other) {
+        {
+            if ( other.tag == "Interactable") {
+                m_DoorTriggeredCheck.DoorControl(-0.5f);
+                animator.SetBool("ispressed", false);
+            } else if (other.tag == "Player") {
+                m_DoorTriggeredCheck.DoorControl(-1f);
+            }
     }
+}
 
 
 }
