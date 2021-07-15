@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1673683}
   - component: {fileID: 1673682}
   - component: {fileID: 214648359}
+  - component: {fileID: 1588372579}
   m_Layer: 0
   m_Name: Gravity Gun
   m_TagString: Untagged
@@ -117,7 +118,7 @@ MonoBehaviour:
   MuzzlePoint: {fileID: 1143110827}
   objectTarget: {fileID: 1038268787}
   LaunchForce: 500
-  range: 5
+  range: 2
   objectFollowDelay: 2
   cameraLookLimiter: 60
   lazerLineRenderer: {fileID: 631647241}
@@ -224,6 +225,25 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &1588372579
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1673680}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &36972900
 GameObject:
   m_ObjectHideFlags: 0
@@ -233,6 +253,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 36972901}
+  - component: {fileID: 189387743}
   m_Layer: 0
   m_Name: Tools
   m_TagString: Untagged
@@ -255,6 +276,21 @@ Transform:
   m_Father: {fileID: 7513840004077653103}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &189387743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 36972900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c04ad2c58879cd4a94505d3c5ae5390, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tools:
+  - {fileID: 1673680}
+  unlockedTools: 01
 --- !u!1 &242800317
 GameObject:
   m_ObjectHideFlags: 0
@@ -422,8 +458,8 @@ LineRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Positions:
-  - {x: 0.6583778, y: 2.4529638, z: 1.2505082}
-  - {x: 0.6583778, y: 2.4529638, z: 2.817539}
+  - {x: -31.650505, y: 31.078964, z: 36.768383}
+  - {x: -33.650505, y: 31.078964, z: 36.76839}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 0.01
@@ -512,7 +548,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1038268787}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.07, y: -0.01, z: 2.66}
+  m_LocalPosition: {x: -0.07000069, y: -0.0099985, z: 2.636086}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1673681}
@@ -892,9 +928,10 @@ GameObject:
   - component: {fileID: 7513840002255144914}
   - component: {fileID: 7513840002255144915}
   - component: {fileID: 7513840002255144926}
+  - component: {fileID: 338476063}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -993,9 +1030,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4d4618fe8a6a7946ace63c3aa542a20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpHeight: 5
-  gravity: -9.81
-  moveSpeed: 5
+  jumpHeight: 1.5
+  gravity: -30
+  moveSpeed: 3.5
   head: {fileID: 7513840004077653088}
   canJump: 0
   mouseSense: 2
@@ -1021,6 +1058,19 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &338476063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7513840002255144916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a960eb29e49d934a945ab3136668abd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  keys: 0
 --- !u!1 &7513840002384313896
 GameObject:
   m_ObjectHideFlags: 0
@@ -1105,8 +1155,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd6043bde05a7fc4cba197d06915c1e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damping: {x: 0.15, y: 0.35, z: 0.1}
-  ShoulderOffset: {x: 2.22, y: -0.18, z: -2.23}
+  Damping: {x: 0.15, y: 0.26, z: 0.1}
+  ShoulderOffset: {x: 1.35, y: -0.35, z: -1.15}
   VerticalArmLength: 0.13
   CameraSide: 1
   CameraDistance: 1
@@ -1141,8 +1191,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7513840003460660486}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.47, y: 1.6599997, z: -3.23}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.5999973, y: 1.4899979, z: -2.1499987}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7513840002255144927}
@@ -1259,7 +1309,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7513840003595405512}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.47, y: 1.6599997, z: -3.23}
+  m_LocalPosition: {x: 1.5999973, y: 1.4899979, z: -2.1499987}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7513840002384313911}
@@ -1320,9 +1370,9 @@ MonoBehaviour:
   m_TransparentLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_MinimumDistanceFromTarget: 0.1
+  m_MinimumDistanceFromTarget: 0.3
   m_AvoidObstacles: 1
-  m_DistanceLimit: 0
+  m_DistanceLimit: 1
   m_MinimumOcclusionTime: 0
   m_CameraRadius: 0.1
   m_Strategy: 0
