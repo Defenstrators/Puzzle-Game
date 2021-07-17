@@ -10,7 +10,10 @@ public class PlayerMovement : MonoBehaviour
     public float jumpHeight;
     public float gravity;
     public float moveSpeed;
+    public float fullSpeedTimer;
     public GameObject head;
+
+    float moveSpeedMultiplyer;
 
     Vector3 playerVelocity;
     public bool canJump;
@@ -68,12 +71,21 @@ public class PlayerMovement : MonoBehaviour
             playerVelocity.y = 0f;
             
         }
+
+        if(Input.GetAxis("Vertical") > 0.1 || Input.GetAxis("Horizontal") > 0.1)
+        {
+            moveSpeedMultiplyer = Mathf.Lerp(moveSpeedMultiplyer, 1, fullSpeedTimer);
+        }
+        else
+        {
+            moveSpeedMultiplyer = 0;
+        }
      
         //Moving  
         Vector3 move = Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime * transform.TransformDirection(Vector3.forward) + 
         Input.GetAxis("Horizontal") * (moveSpeed / 2) * Time.deltaTime * transform.TransformDirection(Vector3.right); //this will move the player foward, back, left and right
 
-        controller.Move(move * moveSpeed);
+        controller.Move((move * moveSpeed) * moveSpeedMultiplyer);
 
         if(Input.GetButtonDown("Jump") && canJump)
         {
