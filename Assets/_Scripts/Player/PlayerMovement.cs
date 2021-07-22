@@ -6,31 +6,29 @@ public class PlayerMovement : MonoBehaviour
 {
 
     CharacterController controller;
-
-    public float jumpHeight;
-    public float gravity;
-    public float moveSpeed;
-    public float fullSpeedTimer;
-    public GameObject head;
-
-    float moveSpeedMultiplyer;
+    public float jumpHeight; // how high the player can jump
+    public float gravity; // how fast the player will fall
+    public float moveSpeed; // how fast the player will move
+    public float fullSpeedTimer; // how long untill the player hits max speed
+    public float coyoteTime; // how long can the player stand in mid air before gravity takes effect
+    public float mouseSense; // multiplyer for how much the mouse will rotate the camera
 
     Vector3 playerVelocity;
-    public bool canJump;
-
-    public float mouseSense;
+    bool canJump;
+float moveSpeedMultiplyer;
+    
     float cameraRotation;
 
 
     public GameObject firstPersonCamera;
     public GameObject thirdPersonCamera;
-
+    public GameObject head;
     bool isFirstPerson;
     Animator animator;
     public float yLookLimitation;
 
-    public float coyoteTime;
-    public float trueCoyoteTime;
+    
+    float trueCoyoteTime;
 
 
     void Start() 
@@ -45,13 +43,12 @@ public class PlayerMovement : MonoBehaviour
     { 
          Movement();
          CameraMovement();
-         print(controller.isGrounded);
     }
     
     void Movement()
     {
         
-        if(Input.GetAxis("Vertical") > 0.1 || Input.GetAxis("Horizontal") > 0.1)
+        if(Input.GetAxis("Vertical") > 0.1 || Input.GetAxis("Vertical") < 0.1 || Input.GetAxis("Horizontal") > 0.1 || Input.GetAxis("Horizontal") < 0.1)
         {
             moveSpeedMultiplyer = Mathf.Lerp(moveSpeedMultiplyer, 1, fullSpeedTimer);
         }
@@ -107,7 +104,7 @@ public class PlayerMovement : MonoBehaviour
 
         cameraRotation = Mathf.Clamp(cameraRotation, -yLookLimitation, yLookLimitation);
 
-        head.transform.localRotation = Quaternion.Euler(cameraRotation, 0, 0);
+         head.transform.localRotation = Quaternion.Euler(cameraRotation, 0, 0);
     }
 
     public void ChangeLookLimiters(int value)

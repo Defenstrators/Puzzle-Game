@@ -15,7 +15,7 @@ public class DoorTriggeredCheck : MonoBehaviour {
    private int check;                  // Check how many are Triggered.
    private bool coroutineBuffer;    // Buffer Check.
    private void Update() {
-      Debug.Log(triggered);
+     // Debug.Log(triggered);
       if (openDoor & triggered < PressurePlates.Length && coroutineBuffer == false) {
          gameObject.GetComponent<Renderer>().enabled = true;
          gameObject.GetComponent<Collider>().enabled = true;
