@@ -43,7 +43,6 @@ float moveSpeedMultiplyer;
     { 
          Movement();
          CameraMovement();
-         print(controller.isGrounded);
     }
     
     void Movement()
