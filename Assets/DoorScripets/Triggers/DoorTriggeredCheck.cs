@@ -10,21 +10,28 @@ public class DoorTriggeredCheck : MonoBehaviour {
    [SerializeField] private bool openDoor;     // Check of Doors Open.
    [SerializeField] private float timeToClose;                // How long the door takes to close.
    public GameObject[] PressurePlates;       // Array of Pressure Plates.
+   private Animator animator;
    
    private float triggered;               // How Triggers are Pressed or active.
    private int check;                  // Check how many are Triggered.
    private bool coroutineBuffer;    // Buffer Check.
+
+   private void Start() {
+      animator = gameObject.GetComponent<Animator>();
+   }
+
    private void Update() {
-     // Debug.Log(triggered);
+     Debug.Log(triggered);
       if (openDoor & triggered < PressurePlates.Length && coroutineBuffer == false) {
-         gameObject.GetComponent<Renderer>().enabled = true;
-         gameObject.GetComponent<Collider>().enabled = true;
+         //gameObject.GetComponent<Renderer>().enabled = true;
+         animator.SetBool("isOpen", false);
+         gameObject.GetComponentInChildren<Collider>().enabled = true;
          openDoor = false;
       }
    }
 
    /// <summary>
-   /// Waits Time.
+   /// Wait Time.
    /// </summary>
    /// <returns></returns>
    IEnumerator OpenDoor() {
@@ -43,8 +50,9 @@ public class DoorTriggeredCheck : MonoBehaviour {
       if (triggered == PressurePlates.Length && coroutineBuffer == false) {
          openDoor = true;
          StartCoroutine(OpenDoor());
-         gameObject.GetComponent<Renderer>().enabled = false;
-         gameObject.GetComponent<Collider>().enabled = false;
+         animator.SetBool("isOpen", true);
+         //gameObject.GetComponent<Renderer>().enabled = false;
+         gameObject.GetComponentInChildren<Collider>().enabled = false;
       }
    }
    
