@@ -40,10 +40,14 @@ public class DoorTriggeredCheck : MonoBehaviour {
            }
               break;
         case DoorTypes.StaysOpen :
+           if (openDoor && coroutineBuffer == false) {
+              gameObject.GetComponentInChildren<Renderer>().enabled = false;
+              gameObject.GetComponentInChildren<Collider>().enabled = false;
+           }
            break;
         
         case DoorTypes.Disappear :
-           if (openDoor && coroutineBuffer == false) {
+           if (openDoor) {
               gameObject.GetComponentInChildren<Renderer>().enabled = false;
               gameObject.GetComponentInChildren<Collider>().enabled = false;
            }
