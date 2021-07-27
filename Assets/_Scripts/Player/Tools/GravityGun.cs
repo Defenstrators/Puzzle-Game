@@ -18,15 +18,22 @@ public class GravityGun : MonoBehaviour
    public LineRenderer lazerLineRenderer;
    public LineRenderer DropLineRenderer;
    public Material laserMaterial; 
+   public int lazerResolution;
+   public float laserUpdateTime;
+   public float lazerMovingAmplutude;
+   public bool useNewLazer;
    public float movingMultiplyer;
    public GameObject cube;
    AudioSource source;
+   [Header("Sounds")]
    public AudioClip pickupSound;
    public AudioClip placeSound;
    public AudioClip fireSound;
     void Start() 
    {
        source = gameObject.GetComponent<AudioSource>();
+       lazerLineRenderer.positionCount = lazerResolution;
+       StartCoroutine("Lazer");
    }
     void Update()
     {
@@ -108,9 +115,6 @@ public class GravityGun : MonoBehaviour
                 {
                     gameObject.GetComponentInParent<PlayerMovement>().ChangePrespective(false); // this will aim the camera out
                 }
-            
-            lazerLineRenderer.SetPosition(0, MuzzlePoint.transform.position); // set the positions of the line renderer
-            lazerLineRenderer.SetPosition(1, MuzzlePoint.transform.position + (MuzzlePoint.transform.forward * range));
         }
     }
 
@@ -135,6 +139,25 @@ public class GravityGun : MonoBehaviour
                 DropLineRenderer.enabled = false;
                 cube.SetActive(false);
                 objectTarget.transform.position = objectTargetOrigionalLocation.transform.position;
+                StartCoroutine("Lazer");
                
+    }
+    IEnumerator Lazer()
+    {
+        while(!grabbedObject)
+        {
+                float offset = range / lazerResolution;
+                float currentOffset = 0;
+                Vector3 randomisedPosition;
+                for(int i = 0; i < lazerResolution; i++)
+                {
+                    randomisedPosition = new Vector3(MuzzlePoint.transform.position.x, MuzzlePoint.transform.position.y, MuzzlePoint.transform.position.z);
+                    randomisedPosition += (MuzzlePoint.transform.forward * currentOffset);
+                    randomisedPosition.y += Random.Range(-lazerMovingAmplutude, lazerMovingAmplutude);
+                    lazerLineRenderer.SetPosition(i, randomisedPosition);
+                    currentOffset += offset;
+                }
+                yield return new WaitForSeconds(laserUpdateTime);
+        }
     }
 }
