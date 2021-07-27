@@ -16,13 +16,13 @@ public class Switch : MonoBehaviour
     private bool m_playerInTriggerCheck;
     public DoorTriggeredCheck m_DoorTriggeredCheck;
     
-    private Animator m_Animator;
+    public Animator m_Animator;
     
     private bool eKey;
 
     private void Start() {
         m_InteractionCheck = false;
-        m_DoorTriggeredCheck = m_DoorTriggeredCheck.GetComponent<DoorTriggeredCheck>();
+        m_DoorTriggeredCheck = transform.parent.GetComponentInChildren<DoorTriggeredCheck>();
     }
 
     private void Update() {
@@ -48,8 +48,10 @@ public class Switch : MonoBehaviour
     /// Put thing you want to happen in this when Switch is on.
     /// </summary>
     /// <returns>Null</returns>
-    IEnumerator SwitchOn() {                    
-        m_DoorTriggeredCheck.DoorControl(1f);
+    IEnumerator SwitchOn() {
+        if (m_DoorTriggeredCheck != null) {
+            m_DoorTriggeredCheck.DoorControl(1f);
+        }
         m_Animator.SetBool("isFlipped", true);
         yield return null;
     }
@@ -58,7 +60,9 @@ public class Switch : MonoBehaviour
     /// </summary>
     /// <returns></returns>
     IEnumerator SwitchOff() {
-        m_DoorTriggeredCheck.DoorControl(-1f);
+        if (m_DoorTriggeredCheck != null) {
+            m_DoorTriggeredCheck.DoorControl(-1f);
+        }
         m_Animator.SetBool("isFlipped", false);
         yield return null;
     }

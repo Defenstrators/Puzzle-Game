@@ -273,5 +273,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_SwitchType: 1
-  isTriggered: 0
-  Leaver: {fileID: 7637244811024292976}
+  m_InteractionCheck: 0
+  m_DoorTriggeredCheck: {fileID: 0}
+  m_Animator: {fileID: 7637244811024292976}

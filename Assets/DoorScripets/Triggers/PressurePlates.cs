@@ -10,7 +10,7 @@ public class PressurePlates : MonoBehaviour {
 
     private void Start() {
         animator = GetComponentInChildren<Animator>();
-        m_DoorTriggeredCheck = gameObject.transform.parent.transform.Find("Door").GetComponent<DoorTriggeredCheck>();
+        m_DoorTriggeredCheck = transform.parent.GetComponentInChildren<DoorTriggeredCheck>();
     }
 
     private DoorTriggeredCheck m_DoorTriggeredCheck;
