@@ -10,16 +10,18 @@ public class PressurePlates : MonoBehaviour {
 
     private void Start() {
         animator = GetComponentInChildren<Animator>();
-        m_DoorTriggeredCheck = transform.parent.GetComponentInChildren<DoorTriggeredCheck>();
+        m_DoorTriggeredChecks = transform.parent.GetComponentsInChildren<DoorTriggeredCheck>();
     }
 
-    private DoorTriggeredCheck m_DoorTriggeredCheck;
+    private DoorTriggeredCheck[] m_DoorTriggeredChecks;
 
     private void OnTriggerEnter(Collider other) {
         if (isTriggered == false) {
             if (other.tag == "Interactable" || other.tag == "Player") {
                 isTriggered = true;
-            m_DoorTriggeredCheck.DoorControl(1f);
+                for (int i = 0; i < m_DoorTriggeredChecks.Length; i++) {    // Checks for all door Child to Parent.
+                    m_DoorTriggeredChecks[i].DoorControl(1f);
+                }
             animator.SetBool("ispressed", true);
         }
         }
@@ -29,7 +31,9 @@ public class PressurePlates : MonoBehaviour {
         {
             if ( other.tag == "Interactable" && isTriggered == true || other.tag == "Player" && isTriggered == true) {
                 isTriggered = false;
-                m_DoorTriggeredCheck.DoorControl(-1f);
+                for (int i = 0; i < m_DoorTriggeredChecks.Length; i++) {    // Checks for all door Child to Parent.
+                    m_DoorTriggeredChecks[i].DoorControl(-1f);
+                }
                 animator.SetBool("ispressed", false);
             } 
     }

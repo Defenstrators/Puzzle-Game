@@ -14,7 +14,7 @@ public class Switch : MonoBehaviour
     
     public bool m_InteractionCheck;        // When Enable Has been Interacted with / Is on state.
     private bool m_playerInTriggerCheck;
-    public DoorTriggeredCheck m_DoorTriggeredCheck;
+    private DoorTriggeredCheck[] m_DoorTriggeredChecks;
     
     public Animator m_Animator;
     
@@ -22,7 +22,7 @@ public class Switch : MonoBehaviour
 
     private void Start() {
         m_InteractionCheck = false;
-        m_DoorTriggeredCheck = transform.parent.GetComponentInChildren<DoorTriggeredCheck>();
+        m_DoorTriggeredChecks = transform.parent.GetComponentsInChildren<DoorTriggeredCheck>();
     }
 
     private void Update() {
@@ -49,8 +49,10 @@ public class Switch : MonoBehaviour
     /// </summary>
     /// <returns>Null</returns>
     IEnumerator SwitchOn() {
-        if (m_DoorTriggeredCheck != null) {
-            m_DoorTriggeredCheck.DoorControl(1f);
+        if (m_DoorTriggeredChecks != null) {
+            for (int i = 0; i < m_DoorTriggeredChecks.Length; i++) {    // Checks for all door Child to Parent.
+                m_DoorTriggeredChecks[i].DoorControl(1f);
+            }
         }
         m_Animator.SetBool("isFlipped", true);
         yield return null;
@@ -60,8 +62,10 @@ public class Switch : MonoBehaviour
     /// </summary>
     /// <returns></returns>
     IEnumerator SwitchOff() {
-        if (m_DoorTriggeredCheck != null) {
-            m_DoorTriggeredCheck.DoorControl(-1f);
+        if (m_DoorTriggeredChecks != null) {
+            for (int i = 0; i < m_DoorTriggeredChecks.Length; i++) {    // Checks for all door Child to Parent.
+                m_DoorTriggeredChecks[i].DoorControl(-1f);
+            }
         }
         m_Animator.SetBool("isFlipped", false);
         yield return null;
