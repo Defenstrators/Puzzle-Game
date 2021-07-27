@@ -14,15 +14,15 @@ public class Switch : MonoBehaviour
     
     public bool m_InteractionCheck;        // When Enable Has been Interacted with / Is on state.
     private bool m_playerInTriggerCheck;
-    private DoorTriggeredCheck m_DoorTriggeredCheck;
+    public DoorTriggeredCheck m_DoorTriggeredCheck;
     
-    public Animator m_Animator;
+    private Animator m_Animator;
     
     private bool eKey;
 
     private void Start() {
         m_InteractionCheck = false;
-        m_DoorTriggeredCheck = gameObject.transform.parent.transform.Find("Door").GetComponent<DoorTriggeredCheck>();
+        m_DoorTriggeredCheck = m_DoorTriggeredCheck.GetComponent<DoorTriggeredCheck>();
     }
 
     private void Update() {
