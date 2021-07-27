@@ -6,11 +6,11 @@ using UnityEngine;
 public class Switch : MonoBehaviour
 {
 
-    public enum SwitchType {
+    enum SwitchType {
         TimerSwitch,
         NormalSwitch
     }
-    public SwitchType m_SwitchType;
+    [SerializeField] private SwitchType m_SwitchType;
     
     public bool m_InteractionCheck;        // When Enable Has been Interacted with / Is on state.
     private bool m_playerInTriggerCheck;

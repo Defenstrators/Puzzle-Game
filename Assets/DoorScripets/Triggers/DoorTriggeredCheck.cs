@@ -5,8 +5,16 @@ using System.Linq;
 using UnityEngine;
 
 public class DoorTriggeredCheck : MonoBehaviour {
-   [Header("Modifiers")]
+
+   enum DoorTypes {
+      OpenNClose,
+      StaysOpen,
+      Disappear
+   }
+   [SerializeField] private DoorTypes m_DoorTypes;
    
+   
+   [Header("Modifiers")]
    [SerializeField] private bool openDoor;     // Check of Doors Open.
    [SerializeField] private float timeToClose;                // How long the door takes to close.
    public GameObject[] PressurePlates;       // Array of Pressure Plates.
@@ -17,17 +25,30 @@ public class DoorTriggeredCheck : MonoBehaviour {
    private bool coroutineBuffer;    // Buffer Check.
 
    private void Start() {
-      animator = gameObject.GetComponent<Animator>();
+      animator = GetComponent<Animator>();
    }
 
    private void Update() {
      Debug.Log(triggered);
-      if (openDoor & triggered < PressurePlates.Length && coroutineBuffer == false) {
-         //gameObject.GetComponent<Renderer>().enabled = true;
-         animator.SetBool("isOpen", false);
-         gameObject.GetComponentInChildren<Collider>().enabled = true;
-         openDoor = false;
-      }
+     switch (m_DoorTypes) {
+        case DoorTypes.OpenNClose:
+           if (openDoor & triggered < PressurePlates.Length && coroutineBuffer == false) {
+              //gameObject.GetComponent<Renderer>().enabled = true;
+              animator.SetBool("isOpen", false);
+              gameObject.GetComponentInChildren<Collider>().enabled = true;
+              openDoor = false;
+           }
+              break;
+        case DoorTypes.StaysOpen :
+           break;
+        
+        case DoorTypes.Disappear :
+           if (openDoor && coroutineBuffer == false) {
+              gameObject.GetComponentInChildren<Renderer>().enabled = false;
+              gameObject.GetComponentInChildren<Collider>().enabled = false;
+           }
+           break;
+     }
    }
 
    /// <summary>
@@ -51,7 +72,7 @@ public class DoorTriggeredCheck : MonoBehaviour {
          openDoor = true;
          StartCoroutine(OpenDoor());
          animator.SetBool("isOpen", true);
-         //gameObject.GetComponent<Renderer>().enabled = false;
+         
          gameObject.GetComponentInChildren<Collider>().enabled = false;
       }
    }
