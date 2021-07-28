@@ -13,6 +13,10 @@ public class Respawner : MonoBehaviour
     GameObject _Object;
     float intesity;
     float currentTime;
+    [TextArea]
+    public string tutorialText;
+    public int textTime;
+    static bool doneTutorialPopup;
 
     private void OnTriggerEnter(Collider other) 
     {
@@ -31,6 +35,13 @@ public class Respawner : MonoBehaviour
             lerping = false;
             currentTime = 0;
             _Object.GetComponent<Renderer>().material.SetFloat("DissolveAmount", -1);
+
+            if(!doneTutorialPopup)
+            {
+                doneTutorialPopup = true;
+                GameObject tutorial = Object.FindObjectOfType<TutorialManager>().gameObject;
+                tutorial.GetComponent<TutorialManager>().ShowText(tutorialText, textTime);
+            }
         }
     }
     public void Hit1stTrigger(GameObject gameObject)

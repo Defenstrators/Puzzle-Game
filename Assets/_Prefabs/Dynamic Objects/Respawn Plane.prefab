@@ -137,7 +137,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5849858873798170944}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -41.342216, y: -11.98, z: 35.95}
   m_LocalScale: {x: 3.156082, y: 0.76043, z: 1.7444193}
   m_Children:
@@ -224,3 +224,5 @@ MonoBehaviour:
   objectRespawnTags:
   - Interactable
   objectFadeTime: 1
+  tutorialText: Dropped object will spawn near where you found them
+  textTime: 5

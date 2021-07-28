@@ -6,7 +6,7 @@ using System.Linq;
 public class GrabbableObject : MonoBehaviour
 {
   public string[] collisionTags;
-  public int objectOffset;
+  public float objectOffset;
   private void OnTriggerEnter(Collider other) 
   {
     if(collisionTags.Contains(other.gameObject.tag))
