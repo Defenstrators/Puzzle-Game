@@ -30,12 +30,13 @@ public class ToolManager : MonoBehaviour
 
     IEnumerator ChangeTool(int tool)
     {
-        tools[currentTool].gameObject.GetComponent<Animator>().Play("Disaquip");
-        yield return new WaitForSeconds(tools[currentTool].GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime);
+       // tools[currentTool].gameObject.GetComponent<Animator>().Play("Disaquip");
+       // yield return new WaitForSeconds(tools[currentTool].GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime);
         tools[currentTool].SetActive(false);
         currentTool = tool;
         tools[currentTool].SetActive(true);
-        tools[currentTool].gameObject.GetComponent<Animator>().Play("Equip");
+        yield return null;
+      //  tools[currentTool].gameObject.GetComponent<Animator>().Play("Equip");
 
 
 

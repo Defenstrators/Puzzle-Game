@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: TestMat
+  m_Name: Block
   m_Shader: {fileID: -6465566751694194690, guid: bbecd39553b5e8d489735232d629ff15, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -80,9 +80,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - Boolean_ae2e267f1aac4890b5eff11538a698df: 0
     - DissolveAmount: -1
-    - Vector1_22f51d96001b474d95398ceb792a9116: 0.42
+    - Vector1_22f51d96001b474d95398ceb792a9116: 0.03
     - Vector1_772da67c7e654be9995f94805ba068f7: -1
+    - Vector1_ed0bf615ec9543e09c7cd5d394f76ea0: 3.35
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
@@ -110,6 +112,7 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
+    - Color_3ef53805b63e49e6943e0c4bb6775621: {r: 0.28382537, g: 0.28382537, b: 0.28382537, a: 1}
     - Color_d86074c4c6954f269014c0b1b0df3b8d: {r: 0.9163266, g: 1, b: 0.16509432, a: 1}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}

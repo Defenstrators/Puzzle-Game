@@ -30,6 +30,7 @@ public class Respawner : MonoBehaviour
             }
             lerping = false;
             currentTime = 0;
+            _Object.GetComponent<Renderer>().material.SetFloat("DissolveAmount", -1);
         }
     }
     public void Hit1stTrigger(GameObject gameObject)
