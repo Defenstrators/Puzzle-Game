@@ -5,53 +5,81 @@ using UnityEngine;
 
 public class Switch : MonoBehaviour
 {
-   
-    public bool isTriggered;        // Trigger Check
-    private bool playerInTrigger;
-    private DoorTriggeredCheck m_DoorTriggeredCheck;
+
+    enum SwitchType {
+        TimerSwitch,
+        NormalSwitch
+    }
+    [SerializeField] private SwitchType m_SwitchType;
     
-    public Animator Leaver;
+    public bool m_InteractionCheck;        // When Enable Has been Interacted with / Is on state.
+    private bool m_playerInTriggerCheck;
+    private DoorTriggeredCheck[] m_DoorTriggeredChecks;
+    
+    public Animator m_Animator;
     
     private bool eKey;
 
     private void Start() {
-        isTriggered = false;
-        m_DoorTriggeredCheck = gameObject.transform.parent.transform.Find("Door").GetComponent<DoorTriggeredCheck>();
+        m_InteractionCheck = false;
+        m_DoorTriggeredChecks = transform.parent.GetComponentsInChildren<DoorTriggeredCheck>();
     }
 
     private void Update() {
         eKey = Input.GetKeyDown(KeyCode.E);
-        if (eKey == true && playerInTrigger == true ) {
-            isTriggered = !isTriggered;
-            if (isTriggered == true) {
-                StartCoroutine(SwitchOn());
-            } else if (isTriggered == false) {
-                StartCoroutine(SwitchOff());
+        if (eKey == true && m_playerInTriggerCheck == true ) {
+            switch (m_SwitchType) {
+                case SwitchType.NormalSwitch:           // Used as An Leaver/Switch in this state.
+                    m_InteractionCheck = !m_InteractionCheck;
+                    if (m_InteractionCheck == true) {
+                        StartCoroutine(SwitchOn());
+                    } else if (m_InteractionCheck == false) {
+                        StartCoroutine(SwitchOff());
+                    }
+                    break;
+                case SwitchType.TimerSwitch:            // When Button is Press it Turns on for a time Then Turns off.
+                    
+                    break;
             }
         }
     }
 
+    /// <summary>
+    /// Put thing you want to happen in this when Switch is on.
+    /// </summary>
+    /// <returns>Null</returns>
     IEnumerator SwitchOn() {
-        m_DoorTriggeredCheck.DoorControl(1f);
-        Leaver.SetBool("isFlipped", true);
+        if (m_DoorTriggeredChecks != null) {
+            for (int i = 0; i < m_DoorTriggeredChecks.Length; i++) {    // Checks for all door Child to Parent.
+                m_DoorTriggeredChecks[i].DoorControl(1f);
+            }
+        }
+        m_Animator.SetBool("isFlipped", true);
         yield return null;
     }
-
+    /// <summary>
+    /// Put thing you want to happen when Switch is off.
+    /// </summary>
+    /// <returns></returns>
     IEnumerator SwitchOff() {
-        m_DoorTriggeredCheck.DoorControl(-1f);
-        Leaver.SetBool("isFlipped", false);
+        if (m_DoorTriggeredChecks != null) {
+            for (int i = 0; i < m_DoorTriggeredChecks.Length; i++) {    // Checks for all door Child to Parent.
+                m_DoorTriggeredChecks[i].DoorControl(-1f);
+            }
+        }
+        m_Animator.SetBool("isFlipped", false);
         yield return null;
     }
 
     private void OnTriggerStay(Collider other) {
-        if (other.tag == "Player" || other.tag == "Heavy?") {
-            playerInTrigger = true;
+        if (other.tag == "Player") {       // Checks for player.
+            m_playerInTriggerCheck = true;
         }
     }
 
     private void OnTriggerExit(Collider other) {
-        if (other.tag == "Player" || other.tag == "Heavy?") {
-            playerInTrigger = false;
+        if (other.tag == "Player") {       // Checks for player.
+            m_playerInTriggerCheck = false;
         }
     }
 
