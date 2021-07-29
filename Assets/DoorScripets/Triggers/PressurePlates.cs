@@ -7,6 +7,8 @@ public class PressurePlates : MonoBehaviour {
     
     public bool isTriggered;            // Trigger Check.
     private Animator animator;        // Animator of Button.
+    public MeshRenderer glowMesh;
+    public Material[] Materials;
 
     private void Start() {
         animator = GetComponentInChildren<Animator>();
@@ -22,7 +24,8 @@ public class PressurePlates : MonoBehaviour {
                 for (int i = 0; i < m_DoorTriggeredChecks.Length; i++) {    // Checks for all door Child to Parent.
                     m_DoorTriggeredChecks[i].DoorControl(1f);
                 }
-            animator.SetBool("ispressed", true);
+            animator.SetBool("isPressed", true);
+            glowMesh.material = Materials[0];
         }
         }
     }
@@ -34,7 +37,9 @@ public class PressurePlates : MonoBehaviour {
                 for (int i = 0; i < m_DoorTriggeredChecks.Length; i++) {    // Checks for all door Child to Parent.
                     m_DoorTriggeredChecks[i].DoorControl(-1f);
                 }
-                animator.SetBool("ispressed", false);
+                glowMesh.material = Materials[1];
+                animator.SetBool("isPressed", false);
+                
             } 
     }
 }

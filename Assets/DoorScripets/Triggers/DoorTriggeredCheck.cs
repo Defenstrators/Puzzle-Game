@@ -25,6 +25,7 @@ public class DoorTriggeredCheck : MonoBehaviour {
    private bool m_CoroutineBuffer;    // Buffer Check.
 
    private void Start() {
+      
       m_Animator = GetComponent<Animator>(); 
    }
    private void Update() {
@@ -33,8 +34,8 @@ public class DoorTriggeredCheck : MonoBehaviour {
          switch (m_DoorTypes) {
             case DoorTypes.OpenNClose:
                if (m_OpenDoor & m_Triggered < m_Triggers.Length && m_CoroutineBuffer == false) {
-                  //gameObject.GetComponent<Renderer>().enabled = true;
                   m_Animator.SetBool("isOpen", false);
+                  //gameObject.GetComponent<Renderer>().enabled = true;
                   gameObject.GetComponentInChildren<Collider>().enabled = true;
                   m_OpenDoor = false;
                }
@@ -53,8 +54,7 @@ public class DoorTriggeredCheck : MonoBehaviour {
                }
                break;
          }
-         Debug.Log(m_Triggers.Length);
-      }
+   }
 
       /// <summary>
       /// Wait Time.
