@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2832680846627901731}
   m_Layer: 0
   m_Name: cube
-  m_TagString: Untagged
+  m_TagString: Enviroment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 2832680846971676940}
   - component: {fileID: 2832680846971676979}
   m_Layer: 0
-  m_Name: Door 1
+  m_Name: Pressure Doors
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -159,9 +159,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 394a77d73de84df45979b4aaa5be6693, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  openDoor: 0
-  timeToClose: 0
-  PressurePlates:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  m_DoorTypes: 0
+  m_OpenDoor: 0
+  m_TimeToClose: 0
+  m_Triggers: []
