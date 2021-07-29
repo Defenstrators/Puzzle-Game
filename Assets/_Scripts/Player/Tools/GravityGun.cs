@@ -18,17 +18,19 @@ public class GravityGun : MonoBehaviour
    public LineRenderer lazerLineRenderer;
    public LineRenderer DropLineRenderer;
    public Material laserMaterial; 
-   public int lazerResolution;
-   public float laserUpdateTime;
-   public float lazerMovingAmplutude;
-   public bool useNewLazer;
-   public float movingMultiplyer;
+      public float movingMultiplyer;
    public GameObject cube;
    AudioSource source;
    [Header("Sounds")]
    public AudioClip pickupSound;
    public AudioClip placeSound;
    public AudioClip fireSound;
+
+    [Header("Lazer Settings")]
+   public int lazerResolution;
+   public float laserUpdateTime;
+   public float lazerMovingAmplutude;
+
     void Start() 
    {
        source = gameObject.GetComponent<AudioSource>();
@@ -40,8 +42,8 @@ public class GravityGun : MonoBehaviour
          
         if(hasGrabbedObject)
         {
-            grabbedObject.transform.position = Vector3.Lerp(grabbedObject.transform.position, transform.position + (transform.forward * grabbedObjectOffset) , objectFollowDelay); //smoothly move the object to the objectTarget, so it doesnt jitter around and look unatural
-          
+            //grabbedObject.transform.position = Vector3.Lerp(grabbedObject.transform.position, transform.position + (transform.forward * grabbedObjectOffset) , objectFollowDelay); //smoothly move the object to the objectTarget, so it doesnt jitter around and look unatural
+                grabbedObject.transform.position = Vector3.MoveTowards(grabbedObject.transform.position, objectTarget.transform.position, objectFollowDelay * Time.deltaTime);
             RaycastHit rHit;
             if(Physics.Raycast(grabbedObject.transform.position, -grabbedObject.transform.up, out rHit, Mathf.Infinity))
             {
@@ -84,9 +86,9 @@ public class GravityGun : MonoBehaviour
                 RaycastHit hit;
                 if(Physics.Raycast(MuzzlePoint.transform.position, MuzzlePoint.transform.forward, out hit, range))
                 {
-                    if(hit.transform.tag == "Interactable")
+                    if(hit.transform.tag == "Interactable" || hit.transform.tag == "Interactable2")
                     {
-                        if(Input.GetButtonDown("Fire1"))
+                        if(Input.GetKeyDown(KeyCode.E))
                         {
                             grabbedObject = hit.transform.gameObject; 
                             hasGrabbedObject = true;

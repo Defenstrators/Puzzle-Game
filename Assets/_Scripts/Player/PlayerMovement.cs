@@ -43,6 +43,8 @@ float moveSpeedMultiplyer;
     { 
          Movement();
          CameraMovement();
+
+         if(Input.GetKeyDown(KeyCode.Escape)) Application.Quit();
     }
     
     void Movement()

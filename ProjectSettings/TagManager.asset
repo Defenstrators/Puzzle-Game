@@ -10,6 +10,7 @@ TagManager:
   - Interactable
   - Enviroment
   - Moving Platform
+  - Interactable2
   layers:
   - Default
   - TransparentFX

@@ -7,6 +7,7 @@ public class Respawner : MonoBehaviour
 {
     public GameObject objectRespawnPoint;
     public GameObject playerRespawnPoint;
+    public GameObject objectRespawnPoint2;
     public string[] objectRespawnTags;
     public float objectFadeTime;
     bool lerping;
@@ -27,6 +28,7 @@ public class Respawner : MonoBehaviour
         else if(objectRespawnTags.Contains(other.tag))
         {
             other.transform.position = objectRespawnPoint.transform.position;
+            other.transform.rotation = new Quaternion(0, 0, 0, 0);
             if(other.GetComponent<Rigidbody>())
             {
                 other.GetComponent<Rigidbody>().velocity = Vector3.zero;
@@ -42,6 +44,10 @@ public class Respawner : MonoBehaviour
                 GameObject tutorial = Object.FindObjectOfType<TutorialManager>().gameObject;
                 tutorial.GetComponent<TutorialManager>().ShowText(tutorialText, textTime);
             }
+        }
+        else if(other.tag == "Interactable2")
+        {
+            other.transform.position = objectRespawnPoint2.transform.position; // this is some fine spageti, and will be fixed later.
         }
     }
     public void Hit1stTrigger(GameObject gameObject)
