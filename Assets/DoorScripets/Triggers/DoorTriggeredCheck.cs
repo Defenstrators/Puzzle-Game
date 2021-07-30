@@ -42,8 +42,7 @@ public class DoorTriggeredCheck : MonoBehaviour {
                break;
             case DoorTypes.StaysOpen:
                if (m_OpenDoor && m_CoroutineBuffer == false) {
-                  gameObject.GetComponentInChildren<Renderer>().enabled = false;
-                  gameObject.GetComponentInChildren<Collider>().enabled = false;
+                  
                }
                break;
 
@@ -77,8 +76,6 @@ public class DoorTriggeredCheck : MonoBehaviour {
             m_OpenDoor = true;
             StartCoroutine(OpenDoor());
             m_Animator.SetBool("isOpen", true);
-
-            gameObject.GetComponentInChildren<Collider>().enabled = false;
          }
       }
    }
