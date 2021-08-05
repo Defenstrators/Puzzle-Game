@@ -48,9 +48,9 @@ public class GravityGun : MonoBehaviour
             if(Physics.Raycast(grabbedObject.transform.position, -grabbedObject.transform.up, out rHit, Mathf.Infinity))
             {
                 Vector3 hitPoint = new Vector3(grabbedObject.transform.position.x, grabbedObject.transform.position.y - rHit.distance, grabbedObject.transform.position.z);
-                cube.transform.position = hitPoint; // this will display a cube directly below the object, to show where it will fall
-                DropLineRenderer.SetPosition(0, grabbedObject.transform.position);
-                DropLineRenderer.SetPosition(1, hitPoint); // theese will draw a line from the object, to the previously mentined cube;
+                //cube.transform.position = hitPoint; // this will display a cube directly below the object, to show where it will fall
+               // DropLineRenderer.SetPosition(0, grabbedObject.transform.position);
+               // DropLineRenderer.SetPosition(1, hitPoint); // theese will draw a line from the object, to the previously mentined cube;
             }
             if(Input.GetButtonDown("Fire1"))
             {
