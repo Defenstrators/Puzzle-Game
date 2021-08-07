@@ -5,49 +5,25 @@ using System.Linq;
 
 public class Respawner : MonoBehaviour
 {
-    public GameObject objectRespawnPoint;
-    public GameObject playerRespawnPoint;
-    public GameObject objectRespawnPoint2;
     public string[] objectRespawnTags;
     public float objectFadeTime;
     bool lerping;
     GameObject _Object;
     float intesity;
     float currentTime;
-    [TextArea]
-    public string tutorialText;
-    public int textTime;
-    static bool doneTutorialPopup;
-
+   
     private void OnTriggerEnter(Collider other) 
     {
         if(other.tag == "Player")
         {
-            other.transform.position = playerRespawnPoint.transform.position;
+            gameObject.GetComponentInParent<RoomManager>().resetRoom();
         }
         else if(objectRespawnTags.Contains(other.tag))
         {
-            other.transform.position = objectRespawnPoint.transform.position;
-            other.transform.rotation = new Quaternion(0, 0, 0, 0);
-            if(other.GetComponent<Rigidbody>())
-            {
-                other.GetComponent<Rigidbody>().velocity = Vector3.zero;
-                
-            }
+            other.gameObject.GetComponent<GrabbableObject>().Respawn();
             lerping = false;
             currentTime = 0;
             _Object.GetComponent<Renderer>().material.SetFloat("DissolveAmount", -1);
-
-            if(!doneTutorialPopup)
-            {
-                doneTutorialPopup = true;
-                GameObject tutorial = Object.FindObjectOfType<TutorialManager>().gameObject;
-                tutorial.GetComponent<TutorialManager>().ShowText(tutorialText, textTime);
-            }
-        }
-        else if(other.tag == "Interactable2")
-        {
-            other.transform.position = objectRespawnPoint2.transform.position; // this is some fine spageti, and will be fixed later.
         }
     }
     public void Hit1stTrigger(GameObject gameObject)

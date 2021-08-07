@@ -10,10 +10,12 @@ public class NewMovingPlatforms : MonoBehaviour
     public float speed;
     public float stopTime;
     public string[] tagsToParent;
+    public GameObject ray;
     int currentDestination;
     bool reversing;
     bool stopped;
     bool playerParented;
+    GameObject player;
 
     void Update()
     {
@@ -29,6 +31,14 @@ public class NewMovingPlatforms : MonoBehaviour
         }
 
          if(!stopped) transform.position = Vector3.MoveTowards(transform.position, destinations[currentDestination].transform.position, speed * Time.deltaTime);
+
+         if(playerParented)
+         {
+             if(Vector3.Distance(transform.position, player.transform.position) > 2.5)
+             {
+                 player.transform.parent = null;
+             }
+         }
     }
 
     void OnTriggerEnter(Collider other) 
@@ -36,7 +46,13 @@ public class NewMovingPlatforms : MonoBehaviour
         if(tagsToParent.Contains(other.tag))
         {
             other.transform.parent = this.transform;
-            if(other.tag == "Player") playerParented = true;
+            if(other.tag == "Player")
+            {
+                playerParented = true;
+                player = other.gameObject;
+            }
+             
+
         }
     }
     void OnTriggerExit(Collider other) 
@@ -44,10 +60,27 @@ public class NewMovingPlatforms : MonoBehaviour
         if(tagsToParent.Contains(other.tag))
         {
             other.transform.parent = null;
+            if(other.tag == "Player") playerParented = false;
         }
     }
     void StartPlatform()
     {
         stopped = false;
+    }
+
+    [ContextMenu("DrawRay")]
+    public void DrawRay()
+    {
+      LineRenderer lr = ray.GetComponent<LineRenderer>();
+
+      lr.positionCount = destinations.Length;
+
+      for(int i = 0; i == destinations.Length; i++)
+      {
+          lr.SetPosition(i, destinations[i].transform.position);
+          print(" oui ");
+      }
+
+
     }
 }

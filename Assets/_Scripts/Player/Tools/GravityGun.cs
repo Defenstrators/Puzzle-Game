@@ -21,6 +21,7 @@ public class GravityGun : MonoBehaviour
       public float movingMultiplyer;
    public GameObject cube;
    AudioSource source;
+   float temporaryDistance;
    [Header("Sounds")]
    public AudioClip pickupSound;
    public AudioClip placeSound;
@@ -30,6 +31,7 @@ public class GravityGun : MonoBehaviour
    public int lazerResolution;
    public float laserUpdateTime;
    public float lazerMovingAmplutude;
+   
 
     void Start() 
    {
@@ -48,9 +50,9 @@ public class GravityGun : MonoBehaviour
             if(Physics.Raycast(grabbedObject.transform.position, -grabbedObject.transform.up, out rHit, Mathf.Infinity))
             {
                 Vector3 hitPoint = new Vector3(grabbedObject.transform.position.x, grabbedObject.transform.position.y - rHit.distance, grabbedObject.transform.position.z);
-                //cube.transform.position = hitPoint; // this will display a cube directly below the object, to show where it will fall
-               // DropLineRenderer.SetPosition(0, grabbedObject.transform.position);
-               // DropLineRenderer.SetPosition(1, hitPoint); // theese will draw a line from the object, to the previously mentined cube;
+                cube.transform.position = hitPoint; // this will display a cube directly below the object, to show where it will fall
+               DropLineRenderer.SetPosition(0, grabbedObject.transform.position);
+               DropLineRenderer.SetPosition(1, hitPoint); // theese will draw a line from the object, to the previously mentined cube;
             }
             if(Input.GetButtonDown("Fire1"))
             {
@@ -102,6 +104,8 @@ public class GravityGun : MonoBehaviour
                             laserMaterial.color = Color.red;
                             grabbedObject.transform.rotation = new Quaternion(0, 0, 0, 0); // reset the objects rotation, so when when the player roatats, it will rotate on the correct axis.
                             grabbedObjectOffset = grabbedObject.GetComponent<GrabbableObject>().objectOffset;
+
+                          
                         }
 
                         laserMaterial.color = Color.green; // change the lazer to green, to let the player know they can pick somthing up.
