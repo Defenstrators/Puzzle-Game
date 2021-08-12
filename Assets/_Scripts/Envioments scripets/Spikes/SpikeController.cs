@@ -39,4 +39,6 @@ public class SpikeController : MonoBehaviour {
         _Animator.SetBool("isTriggered", false);
     }
 
+   
+
 }

@@ -70,8 +70,11 @@ public class DoorTriggeredCheck : MonoBehaviour {
       /// Enables Doors and Disable doors depending on how many triggers are active.
       /// </summary>
       /// <param name="i"></param>
-      public void DoorControl(float i) {
-         m_Triggered += i;
+      ///
+      private PressurePlates[] Plates;
+      private Switch[] _Switches;
+      public void DoorControl(float t) {
+         m_Triggered += t;
          if (m_Triggered == m_Triggers.Length && m_CoroutineBuffer == false) {
             m_OpenDoor = true;
             StartCoroutine(OpenDoor());

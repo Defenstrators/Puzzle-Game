@@ -6,6 +6,8 @@ using UnityEngine;
 public class PressurePlates : MonoBehaviour {
     
     public bool isTriggered;            // Trigger Check.
+    public bool Triggered;
+    
     private Animator animator;        // Animator of Button.
     public MeshRenderer glowMesh;
     public Material[] Materials;
