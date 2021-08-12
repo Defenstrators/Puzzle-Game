@@ -68,6 +68,12 @@ public class NewMovingPlatforms : MonoBehaviour
         stopped = false;
     }
 
+    public void StopPlatform(bool stop)
+    {
+        if(stop) stopped = true;
+        else stopped = false;
+    }
+
     [ContextMenu("DrawRay")]
     public void DrawRay()
     {
@@ -80,7 +86,5 @@ public class NewMovingPlatforms : MonoBehaviour
           lr.SetPosition(i, destinations[i].transform.position);
           print(" oui ");
       }
-
-
     }
 }

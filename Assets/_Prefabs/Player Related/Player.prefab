@@ -15,8 +15,9 @@ GameObject:
   - component: {fileID: 1673682}
   - component: {fileID: 214648359}
   - component: {fileID: 1588372579}
+  - component: {fileID: 1085442870}
   m_Layer: 0
-  m_Name: Gravity Gun
+  m_Name: Tools
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -250,6 +251,23 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1085442870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1673680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e37a4e7d1322a04686cdeb853a4a3ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: 20
+  timeAmmount: 1
+  lr: {fileID: 631647241}
+  muzzlePoint: {fileID: 1143110827}
+  toolActive: 1
 --- !u!1 &36972900
 GameObject:
   m_ObjectHideFlags: 0
@@ -261,7 +279,7 @@ GameObject:
   - component: {fileID: 36972901}
   - component: {fileID: 189387743}
   m_Layer: 0
-  m_Name: Tools
+  m_Name: Tool Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
