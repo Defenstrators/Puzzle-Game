@@ -36,7 +36,7 @@ public class DoorTriggeredCheck : MonoBehaviour {
                if (m_OpenDoor & m_Triggered < m_Triggers.Length && m_CoroutineBuffer == false) {
                   m_Animator.SetBool("isOpen", false);
                   //gameObject.GetComponent<Renderer>().enabled = true;
-                  gameObject.GetComponentInChildren<Collider>().enabled = true;
+                  gameObject.GetComponentInChildren<Transform>().gameObject.GetComponentInChildren<Collider>().enabled = true;
                   m_OpenDoor = false;
                }
                break;
@@ -48,8 +48,8 @@ public class DoorTriggeredCheck : MonoBehaviour {
 
             case DoorTypes.Disappear:
                if (m_OpenDoor) {
-                  gameObject.GetComponentInChildren<Renderer>().enabled = false;
-                  gameObject.GetComponentInChildren<Collider>().enabled = false;
+                  gameObject.GetComponentInChildren<Transform>().gameObject.active = false;
+                  gameObject.GetComponentInChildren<Transform>().gameObject.GetComponentInChildren<Collider>().enabled = false;
                }
                break;
          }
@@ -70,8 +70,11 @@ public class DoorTriggeredCheck : MonoBehaviour {
       /// Enables Doors and Disable doors depending on how many triggers are active.
       /// </summary>
       /// <param name="i"></param>
-      public void DoorControl(float i) {
-         m_Triggered += i;
+      ///
+      private PressurePlates[] Plates;
+      private Switch[] _Switches;
+      public void DoorControl(float t) {
+         m_Triggered += t;
          if (m_Triggered == m_Triggers.Length && m_CoroutineBuffer == false) {
             m_OpenDoor = true;
             StartCoroutine(OpenDoor());
