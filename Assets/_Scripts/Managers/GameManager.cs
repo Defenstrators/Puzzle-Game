@@ -20,9 +20,9 @@ public class GameManager : MonoBehaviour {
         loadingScreen.SetActive(true);
         _ScenesLoading.Add(SceneManager.UnloadSceneAsync((int)SceneIndexes.TITLE_SCREEN));
         //NOTE Ending Level animations screen can be Input here (loading Scene With animation playing it. PLayer may have to be Moved for this Interaction).
-        _ScenesLoading.Add(SceneManager.LoadSceneAsync((int)SceneIndexes.LEVEL2, LoadSceneMode.Additive)); 
+        _ScenesLoading.Add(SceneManager.LoadSceneAsync((int)SceneIndexes.LEVEL1, LoadSceneMode.Additive)); 
         StartCoroutine(GetSceneLoadProgress());
-        _CurrentScene = (int)SceneIndexes.LEVEL2;
+        _CurrentScene = (int)SceneIndexes.LEVEL1;
 
     }
     public IEnumerator GetSceneLoadProgress() {
