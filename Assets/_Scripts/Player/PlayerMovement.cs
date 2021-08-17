@@ -24,7 +24,7 @@ float moveSpeedMultiplyer;
     public GameObject thirdPersonCamera;
     public GameObject head;
     bool isFirstPerson;
-    Animator animator;
+    [SerializeField] Animator animator;
     public float yLookLimitation;
 
     
@@ -36,7 +36,6 @@ float moveSpeedMultiplyer;
         controller = gameObject.GetComponent<CharacterController>();
 
         Cursor.lockState = CursorLockMode.Locked;
-         animator = gameObject.GetComponentInChildren<Animator>();
     }
 
     void Update() 
@@ -61,15 +60,15 @@ float moveSpeedMultiplyer;
      
         //Moving  
         Vector3 move = Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime * transform.TransformDirection(Vector3.forward) + 
-        Input.GetAxis("Horizontal") * (moveSpeed / 2) * Time.deltaTime * transform.TransformDirection(Vector3.right); //this will move the player foward, back, left and right
-
-        if(move.x > 0.1)
+            Input.GetAxis("Horizontal") * (moveSpeed / 2) * Time.deltaTime * transform.TransformDirection(Vector3.right); //this will move the player foward, back, left and right
+        print(move.magnitude * moveSpeed);
+        if(Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0 )
         {
-            animator.SetBool("ssWalking", true);
+            animator.SetBool("isWalking", true);
         }
         else
         {
-            animator.SetBool("ssWalking", false);
+            animator.SetBool("isWalking", false);
         }
         controller.Move((move * moveSpeed) * moveSpeedMultiplyer);
 
