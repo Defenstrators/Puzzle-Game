@@ -4,41 +4,46 @@ using UnityEngine;
 
 public class ToolManager : MonoBehaviour
 {
-    public GameObject[] tools;
-    public bool[] unlockedTools;
-    int currentTool;
-
-    private void Update() 
+    GravityGun gravityGun;
+    TimeStopperGun timeStopperGun;
+    private void Start() 
     {
-        if(Input.GetKeyDown("1") && unlockedTools[0] == true && currentTool != 0) StartCoroutine("ChangeTool", 0);
-        if(Input.GetKeyDown("2") && unlockedTools[1] == true && currentTool != 1) StartCoroutine("ChangeTool", 1);
-        if(Input.GetKeyDown("3") && unlockedTools[2] == true && currentTool != 2) StartCoroutine("ChangeTool", 2);
-        if(Input.GetKeyDown("4") && unlockedTools[3] == true && currentTool != 3) StartCoroutine("ChangeTool", 3);
-
-    }
-    // void ChangeTool(int tool)
-    // {
-    //     tools[currentTool].SetActive(false);
-    //     currentTool = tool;
-    //     tools[currentTool].SetActive(true);
-    // }
-    public void UnlockTool(int tool)
-    {
-        unlockedTools[tool] = true;
-        StartCoroutine("ChangeTool", tool);
+        gravityGun = GetComponentInChildren<GravityGun>();
+        timeStopperGun = GetComponentInChildren<TimeStopperGun>();
+        ToolChange(1);
     }
 
-    IEnumerator ChangeTool(int tool)
+    // 1 is no tools, 2 is gravity gun, 3 is TimeStopperGun, 4 is grapple hook.
+    public void ToolChange(int i)
     {
-       // tools[currentTool].gameObject.GetComponent<Animator>().Play("Disaquip");
-       // yield return new WaitForSeconds(tools[currentTool].GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime);
-        tools[currentTool].SetActive(false);
-        currentTool = tool;
-        tools[currentTool].SetActive(true);
-        yield return null;
-      //  tools[currentTool].gameObject.GetComponent<Animator>().Play("Equip");
+        switch(i)
+        {
+            case 1:
+
+            gravityGun.toolActive = true;
+            timeStopperGun.toolActive = true;
+
+            break;
+
+            case 2:
+
+            gravityGun.toolActive = true;
+            timeStopperGun.toolActive = false;
+
+            break;
+
+            case 3:
+
+            gravityGun.toolActive = false;
+            timeStopperGun.toolActive = true;
+
+            break;
+
+            case 4:
+
+            break;
 
 
-
+        }
     }
 }

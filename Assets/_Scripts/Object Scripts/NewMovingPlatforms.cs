@@ -78,12 +78,10 @@ public class NewMovingPlatforms : MonoBehaviour
     public void DrawRay()
     {
       LineRenderer lr = ray.GetComponent<LineRenderer>();
-
       lr.positionCount = destinations.Length;
-
-      for(int i = 0; i == destinations.Length; i++)
+      for(int i = 0; i < destinations.Length; i++)
       {
-          lr.SetPosition(i, destinations[i].transform.position);
+          lr.SetPosition(i, destinations[i].transform.localPosition);
           print(" oui ");
       }
     }
