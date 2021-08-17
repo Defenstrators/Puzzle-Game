@@ -36,7 +36,7 @@ float moveSpeedMultiplyer;
         controller = gameObject.GetComponent<CharacterController>();
 
         Cursor.lockState = CursorLockMode.Locked;
-        // animator = gameObject.GetComponent<Animator>();
+         animator = gameObject.GetComponentInChildren<Animator>();
     }
 
     void Update() 
@@ -63,6 +63,14 @@ float moveSpeedMultiplyer;
         Vector3 move = Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime * transform.TransformDirection(Vector3.forward) + 
         Input.GetAxis("Horizontal") * (moveSpeed / 2) * Time.deltaTime * transform.TransformDirection(Vector3.right); //this will move the player foward, back, left and right
 
+        if(move.x > 0.1)
+        {
+            animator.SetBool("ssWalking", true);
+        }
+        else
+        {
+            animator.SetBool("ssWalking", false);
+        }
         controller.Move((move * moveSpeed) * moveSpeedMultiplyer);
 
         if(Input.GetButtonDown("Jump") && canJump)
