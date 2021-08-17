@@ -3,15 +3,22 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Heavy?
+  - PressurePlate
+  - Leaver
+  - Interactable
+  - Enviroment
+  - Interactable2
+  - MovingPlatform
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Enviroment
   - Water
   - UI
-  - 
+  - Grappablle
   - 
   - 
   - 
