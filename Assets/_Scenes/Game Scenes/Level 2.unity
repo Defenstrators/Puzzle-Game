@@ -6207,7 +6207,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1964
+  m_Name: pb_Mesh-733112
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -6371,7 +6371,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh19158
+  m_Name: pb_Mesh159240
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -14826,8 +14826,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 147b5609cd84c394181d71dab52c8748, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectsToRespawn:
-  - {fileID: 630541430}
+  objectsToRespawn: []
   playerRespawnPoint: {fileID: 315401710}
 --- !u!43 &1252333813
 Mesh:
@@ -14835,7 +14834,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh19220
+  m_Name: pb_Mesh159316
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -21659,7 +21658,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5849858873798170955, guid: cbbfe13a0e05289498736d563900ec67, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -6.33
+      value: -12.599999
       objectReference: {fileID: 0}
     - target: {fileID: 5849858873798170955, guid: cbbfe13a0e05289498736d563900ec67, type: 3}
       propertyPath: m_LocalPosition.z
