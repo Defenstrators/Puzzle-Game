@@ -61,7 +61,7 @@ float moveSpeedMultiplyer;
         //Moving  
         Vector3 move = Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime * transform.TransformDirection(Vector3.forward) + 
             Input.GetAxis("Horizontal") * (moveSpeed / 2) * Time.deltaTime * transform.TransformDirection(Vector3.right); //this will move the player foward, back, left and right
-        print(move.magnitude * moveSpeed);
+        
         if(Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0 )
         {
             animator.SetBool("isWalking", true);
