@@ -58,11 +58,11 @@ public class GravityGun : MonoBehaviour
                 DropLineRenderer.SetPosition(0, grabbedObject.transform.position);
                 DropLineRenderer.SetPosition(1, hitPoint); // theese will draw a line from the object, to the previously mentined cube;
                 }
-                if(Input.GetButtonDown("Fire1"))
+                if(Input.GetKeyDown(KeyCode.E))
                 {
                     DropObject(false);
                 }
-                if(Input.GetButtonDown("Fire2"))
+                if(Input.GetButtonDown("Fire1"))
                 {
                     DropObject(true);     
                 }
