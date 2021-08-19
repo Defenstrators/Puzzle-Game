@@ -14,7 +14,7 @@ public class NewMovingPlatforms : MonoBehaviour
     int currentDestination;
     bool reversing;
     bool stopped;
-    bool playerParented;
+     private bool playerParented;
     GameObject player;
 
     void Update()
@@ -37,6 +37,7 @@ public class NewMovingPlatforms : MonoBehaviour
              if(Vector3.Distance(transform.position, player.transform.position) > 2.5)
              {
                  player.transform.parent = null;
+                 playerParented = false;
              }
          }
     }
