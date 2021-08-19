@@ -22,6 +22,9 @@ public class GravityGun : MonoBehaviour
    public GameObject cube;
    AudioSource source;
    float temporaryDistance;
+
+   public bool toolActive;
+   ToolManager toolManager;
    [Header("Sounds")]
    public AudioClip pickupSound;
    public AudioClip placeSound;
@@ -36,92 +39,96 @@ public class GravityGun : MonoBehaviour
     void Start() 
    {
        source = gameObject.GetComponent<AudioSource>();
-       lazerLineRenderer.positionCount = lazerResolution;
-       StartCoroutine("Lazer");
+       toolManager = GetComponentInParent<ToolManager>();
+     //  lazerLineRenderer.positionCount = lazerResolution;
    }
     void Update()
     {
-         
-        if(hasGrabbedObject)
-        {
-            //grabbedObject.transform.position = Vector3.Lerp(grabbedObject.transform.position, transform.position + (transform.forward * grabbedObjectOffset) , objectFollowDelay); //smoothly move the object to the objectTarget, so it doesnt jitter around and look unatural
-                grabbedObject.transform.position = Vector3.MoveTowards(grabbedObject.transform.position, objectTarget.transform.position, objectFollowDelay * Time.deltaTime);
-            RaycastHit rHit;
-            if(Physics.Raycast(grabbedObject.transform.position, -grabbedObject.transform.up, out rHit, Mathf.Infinity))
+         if(toolActive)
+         {
+            if(hasGrabbedObject)
             {
-                Vector3 hitPoint = new Vector3(grabbedObject.transform.position.x, grabbedObject.transform.position.y - rHit.distance, grabbedObject.transform.position.z);
-                cube.transform.position = hitPoint; // this will display a cube directly below the object, to show where it will fall
-               DropLineRenderer.SetPosition(0, grabbedObject.transform.position);
-               DropLineRenderer.SetPosition(1, hitPoint); // theese will draw a line from the object, to the previously mentined cube;
-            }
-            if(Input.GetButtonDown("Fire1"))
-            {
-                DropObject(false);
-            }
-            if(Input.GetButtonDown("Fire2"))
-            {
-                DropObject(true);     
-            }
-            if(Input.mouseScrollDelta.y > 0 || Input.mouseScrollDelta.y < 0)
-            {
-                print("It Works!");
-            }  
-
-            if(Input.mouseScrollDelta.y > 0 || Input.mouseScrollDelta.y < 0)
-            {
-                //  if(Input.GetKey(KeyCode.LeftShift))
-                //  {
-                //      objectTarget.transform.position = new Vector3(objectTarget.transform.position.x, objectTarget.transform.position.y, 
-                //      objectTarget.transform.position.z + Input.mouseScrollDelta.y);
-                //      Debug.Log(Input.mouseScrollDelta);
-
-                //  }
-                //  else if (Input.GetKey(KeyCode.Q))
-                //  {
-
-                //  }
-                    grabbedObject.transform.Rotate(new Vector3(0, (Input.mouseScrollDelta.y * rotateObjectSencitivity), 0)); // this will rotate the grabbed object on the y axis
-            }  
-        }
-        else
-        {
-                RaycastHit hit;
-                if(Physics.Raycast(MuzzlePoint.transform.position, MuzzlePoint.transform.forward, out hit, range))
+                //grabbedObject.transform.position = Vector3.Lerp(grabbedObject.transform.position, transform.position + (transform.forward * grabbedObjectOffset) , objectFollowDelay); //smoothly move the object to the objectTarget, so it doesnt jitter around and look unatural
+                    grabbedObject.transform.position = Vector3.MoveTowards(grabbedObject.transform.position, objectTarget.transform.position, objectFollowDelay * Time.deltaTime);
+                RaycastHit rHit;
+                if(Physics.Raycast(grabbedObject.transform.position, -grabbedObject.transform.up, out rHit, Mathf.Infinity))
                 {
-                    if(hit.transform.tag == "Interactable" || hit.transform.tag == "Interactable2")
-                    {
-                        if(Input.GetKeyDown(KeyCode.E))
-                        {
-                            grabbedObject = hit.transform.gameObject; 
-                            hasGrabbedObject = true;
-                            grabbedObject.gameObject.GetComponent<Rigidbody>().isKinematic = true; // we dont want the object to be affected by gravity when grabbed by the player;
-                            gameObject.GetComponentInParent<PlayerMovement>().ChangeLookLimiters(cameraLookLimiter); // change the look limiters to constrained ones so the player cant ram the object under them.
-                            lazerLineRenderer.enabled = false; // disable the lazer
-                            gameObject.GetComponentInParent<PlayerMovement>().ChangePrespective(false); // zoom the camera out
-                            source.PlayOneShot(pickupSound); //play the pickup sound 
-                            cube.SetActive(true);
-                            DropLineRenderer.enabled = true;
-                            laserMaterial.color = Color.red;
-                            grabbedObject.transform.rotation = new Quaternion(0, 0, 0, 0); // reset the objects rotation, so when when the player roatats, it will rotate on the correct axis.
-                            grabbedObjectOffset = grabbedObject.GetComponent<GrabbableObject>().objectOffset;
-
-                          
-                        }
-
-                        laserMaterial.color = Color.green; // change the lazer to green, to let the player know they can pick somthing up.
-                    }
+                    Vector3 hitPoint = new Vector3(grabbedObject.transform.position.x, grabbedObject.transform.position.y - rHit.distance, grabbedObject.transform.position.z);
+                    cube.transform.position = hitPoint; // this will display a cube directly below the object, to show where it will fall
+                DropLineRenderer.SetPosition(0, grabbedObject.transform.position);
+                DropLineRenderer.SetPosition(1, hitPoint); // theese will draw a line from the object, to the previously mentined cube;
                 }
-                else laserMaterial.color = Color.red; // change the lazer to red so the player knows they cant pick somthing up.
-
+                if(Input.GetButtonDown("Fire1"))
+                {
+                    DropObject(false);
+                }
                 if(Input.GetButtonDown("Fire2"))
                 {
-                    gameObject.GetComponentInParent<PlayerMovement>().ChangePrespective(true); // this will zoom the camera in, to help the player aim
+                    DropObject(true);     
                 }
-                 if(Input.GetButtonUp("Fire2"))
+                if(Input.mouseScrollDelta.y > 0 || Input.mouseScrollDelta.y < 0)
                 {
-                    gameObject.GetComponentInParent<PlayerMovement>().ChangePrespective(false); // this will aim the camera out
-                }
-        }
+                    print("It Works!");
+                }  
+
+                if(Input.mouseScrollDelta.y > 0 || Input.mouseScrollDelta.y < 0)
+                {
+                    //  if(Input.GetKey(KeyCode.LeftShift))
+                    //  {
+                    //      objectTarget.transform.position = new Vector3(objectTarget.transform.position.x, objectTarget.transform.position.y, 
+                    //      objectTarget.transform.position.z + Input.mouseScrollDelta.y);
+                    //      Debug.Log(Input.mouseScrollDelta);
+
+                    //  }
+                    //  else if (Input.GetKey(KeyCode.Q))
+                    //  {
+
+                    //  }
+                        grabbedObject.transform.Rotate(new Vector3(0, (Input.mouseScrollDelta.y * rotateObjectSencitivity), 0)); // this will rotate the grabbed object on the y axis
+                }  
+            }
+            else
+            {
+                    RaycastHit hit;
+                    if(Physics.Raycast(MuzzlePoint.transform.position, MuzzlePoint.transform.forward, out hit, range))
+                    {
+                        if(hit.transform.tag == "Interactable" && hit.transform.GetComponent<Rigidbody>().isKinematic == false) // check to see if the object isnt kinematic, because if it is, it means it got frozen by the time stopper gun
+                        {
+                            if(Input.GetKeyDown(KeyCode.E))
+                            {
+                                grabbedObject = hit.transform.gameObject; 
+                                hasGrabbedObject = true;
+                                grabbedObject.gameObject.GetComponent<Rigidbody>().isKinematic = true; // we dont want the object to be affected by gravity when grabbed by the player;
+                                gameObject.GetComponentInParent<PlayerMovement>().ChangeLookLimiters(cameraLookLimiter); // change the look limiters to constrained ones so the player cant ram the object under them.
+                                lazerLineRenderer.enabled = false; // disable the lazer
+                                gameObject.GetComponentInParent<PlayerMovement>().ChangePrespective(false); // zoom the camera out
+                                source.PlayOneShot(pickupSound); //play the pickup sound 
+                                cube.SetActive(true);
+                                DropLineRenderer.enabled = true;
+                                laserMaterial.color = Color.red;
+                                grabbedObject.transform.rotation = new Quaternion(0, 0, 0, 0); // reset the objects rotation, so when when the player roatats, it will rotate on the correct axis.
+                                grabbedObjectOffset = grabbedObject.GetComponent<GrabbableObject>().objectOffset;
+                                toolManager.ToolChange(2);
+                                //StartCoroutine("Lazer");
+
+                            
+                            }
+
+                            laserMaterial.color = Color.green; // change the lazer to green, to let the player know they can pick somthing up.
+                        }
+                    }
+                    else laserMaterial.color = Color.red; // change the lazer to red so the player knows they cant pick somthing up.
+
+                    if(Input.GetButtonDown("Fire2"))
+                    {
+                        gameObject.GetComponentInParent<PlayerMovement>().ChangePrespective(true); // this will zoom the camera in, to help the player aim
+                    }
+                    if(Input.GetButtonUp("Fire2"))
+                    {
+                        gameObject.GetComponentInParent<PlayerMovement>().ChangePrespective(false); // this will aim the camera out
+                    }
+            }
+         }
     }
 
     void OnDrawGizmos() 
@@ -145,7 +152,8 @@ public class GravityGun : MonoBehaviour
                 DropLineRenderer.enabled = false;
                 cube.SetActive(false);
                 objectTarget.transform.position = objectTargetOrigionalLocation.transform.position;
-                StartCoroutine("Lazer");
+                toolManager.ToolChange(1);
+              //  StopCoroutine("Lazer");
                
     }
     IEnumerator Lazer()

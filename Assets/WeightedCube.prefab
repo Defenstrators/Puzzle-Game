@@ -49,7 +49,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!65 &501512253
 BoxCollider:
@@ -93,6 +93,7 @@ MonoBehaviour:
   - Player
   - Enviroment
   objectOffset: 0
+  home: {fileID: 0}
 --- !u!1001 &7712663278002961448
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -144,6 +145,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 43961116ec1e50e4ca964faae91f01cb, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3cd553aba3085524fa8295140cd9171d, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 43961116ec1e50e4ca964faae91f01cb, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3cd553aba3085524fa8295140cd9171d, type: 2}
     - target: {fileID: 919132149155446097, guid: 43961116ec1e50e4ca964faae91f01cb, type: 3}
       propertyPath: m_Name
       value: Lost_Robot_Crate
