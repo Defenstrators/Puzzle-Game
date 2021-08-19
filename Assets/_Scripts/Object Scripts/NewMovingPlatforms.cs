@@ -14,7 +14,7 @@ public class NewMovingPlatforms : MonoBehaviour
     int currentDestination;
     bool reversing;
     bool stopped;
-    bool playerParented;
+     private bool playerParented;
     GameObject player;
 
     void Update()
@@ -37,6 +37,7 @@ public class NewMovingPlatforms : MonoBehaviour
              if(Vector3.Distance(transform.position, player.transform.position) > 2.5)
              {
                  player.transform.parent = null;
+                 playerParented = false;
              }
          }
     }
@@ -68,19 +69,21 @@ public class NewMovingPlatforms : MonoBehaviour
         stopped = false;
     }
 
+    public void StopPlatform(bool stop)
+    {
+        if(stop) stopped = true;
+        else stopped = false;
+    }
+
     [ContextMenu("DrawRay")]
     public void DrawRay()
     {
       LineRenderer lr = ray.GetComponent<LineRenderer>();
-
       lr.positionCount = destinations.Length;
-
-      for(int i = 0; i == destinations.Length; i++)
+      for(int i = 0; i < destinations.Length; i++)
       {
-          lr.SetPosition(i, destinations[i].transform.position);
+          lr.SetPosition(i, destinations[i].transform.localPosition);
           print(" oui ");
       }
-
-
     }
 }

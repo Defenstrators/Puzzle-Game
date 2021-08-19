@@ -16,7 +16,7 @@ public class ToolUnlocker : MonoBehaviour
     {
         if(other.tag == "Player")
         {
-            other.gameObject.GetComponentInChildren<ToolManager>().UnlockTool(toolToUnlock);
+          //  other.gameObject.GetComponentInChildren<ToolManager>().UnlockTool(toolToUnlock);
             turtorialManager.GetComponent<TutorialManager>().ShowText(tutorialText, textDuration);
             Destroy(displayTool);
 

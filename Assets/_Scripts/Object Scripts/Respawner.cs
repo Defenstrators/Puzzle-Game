@@ -23,7 +23,11 @@ public class Respawner : MonoBehaviour
             other.gameObject.GetComponent<GrabbableObject>().Respawn();
             lerping = false;
             currentTime = 0;
-            _Object.GetComponent<Renderer>().material.SetFloat("DissolveAmount", -1);
+            foreach(Material material in _Object.GetComponentInChildren<Renderer>().materials)
+            {
+                 material.SetFloat("DissolveAmount", -1);
+            }
+           
         }
     }
     public void Hit1stTrigger(GameObject gameObject)
@@ -39,7 +43,12 @@ public class Respawner : MonoBehaviour
        {
         intesity = Mathf.Lerp(-1, 1, currentTime);
         if(currentTime <= objectFadeTime) currentTime += Time.deltaTime;
-        _Object.GetComponent<Renderer>().material.SetFloat("DissolveAmount", intesity);
+
+        foreach(Material material in _Object.GetComponentInChildren<Renderer>().materials)
+        {
+            material.SetFloat("DissolveAmount", intesity);     
+        }
+        
        }
     }
 }
