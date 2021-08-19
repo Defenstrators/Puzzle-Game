@@ -60,10 +60,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isTriggered: 0
+  Triggered: 0
   glowMesh: {fileID: 5792121767678591152}
   Materials:
   - {fileID: 2100000, guid: 29c87fa38d96f304fab4b2139ddb898f, type: 2}
-  - {fileID: 2100000, guid: 75a68890b19c01d4692b4c4caac511b9, type: 2}
+  - {fileID: 2100000, guid: 530a0327df4ab8146b1beba6995567ce, type: 2}
+  externalDoors: {fileID: 0}
 --- !u!65 &8282814846107731868
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -120,7 +122,7 @@ PrefabInstance:
     - target: {fileID: -8951283461271776391, guid: efa423ecc507c234c89159a2886f1e91, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 75a68890b19c01d4692b4c4caac511b9, type: 2}
+      objectReference: {fileID: 2100000, guid: 530a0327df4ab8146b1beba6995567ce, type: 2}
     - target: {fileID: -8679921383154817045, guid: efa423ecc507c234c89159a2886f1e91, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -192,11 +194,11 @@ PrefabInstance:
     - target: {fileID: 4482618790090186966, guid: efa423ecc507c234c89159a2886f1e91, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 9fc7224fd1ea1584b80ff59d71162182, type: 2}
+      objectReference: {fileID: 2100000, guid: 12a5f106128a2ac4baf0ea329c35bb15, type: 2}
     - target: {fileID: 5834754803116540683, guid: efa423ecc507c234c89159a2886f1e91, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: b08315c53defe114ab1985bd561f646c, type: 2}
+      objectReference: {fileID: 2100000, guid: 12a5f106128a2ac4baf0ea329c35bb15, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: efa423ecc507c234c89159a2886f1e91, type: 3}
 --- !u!1 &6874198101194075800 stripped
