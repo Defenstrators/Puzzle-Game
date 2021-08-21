@@ -126,13 +126,13 @@ float moveSpeedMultiplyer;
     {
         if (prespective == true)
         {
-              firstPersonCamera.SetActive(true);
-             thirdPersonCamera.SetActive(false); 
+           //   firstPersonCamera.SetActive(true);
+            // thirdPersonCamera.SetActive(false); 
         }
         else
         {
-              firstPersonCamera.SetActive(false);
-             thirdPersonCamera.SetActive(true);
+           //   firstPersonCamera.SetActive(false);
+            // thirdPersonCamera.SetActive(true);
         }
     }
 }
