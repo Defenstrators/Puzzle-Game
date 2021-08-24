@@ -63,7 +63,7 @@ public class PlayerMovement : MonoBehaviour
      
         //Moving  
         Vector3 move = Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime * transform.TransformDirection(Vector3.forward) + 
-            Input.GetAxis("Horizontal") * (moveSpeed / 2) * Time.deltaTime * transform.TransformDirection(Vector3.right); //this will move the player foward, back, left and right
+            Input.GetAxis("Horizontal") * (moveSpeed / 2) * Time.deltaTime * transform.TransformDirection(Vector3.right).normalized; //this will move the player foward, back, left and right
         
         controller.Move((move * moveSpeed) * moveSpeedMultiplyer);
 
