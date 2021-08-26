@@ -97,6 +97,7 @@ public class GravityGun : MonoBehaviour
                             if(Input.GetKeyDown(KeyCode.E))
                             {
                                 grabbedObject = hit.transform.gameObject; 
+                                grabbedObject.layer = 6;
                                 hasGrabbedObject = true;
                                 grabbedObject.gameObject.GetComponent<Rigidbody>().isKinematic = true; // we dont want the object to be affected by gravity when grabbed by the player;
                                 gameObject.GetComponentInParent<CameraController>().ChangeLookLimiters(cameraLookLimiter); // change the look limiters to constrained ones so the player cant ram the object under them.
@@ -142,7 +143,8 @@ public class GravityGun : MonoBehaviour
                 lazerLineRenderer.enabled = true; // turn the line render back on
                 DropLineRenderer.enabled = false;
                 cube.SetActive(false);
-                objectTarget.transform.position = objectTargetOrigionalLocation.transform.position;
+                grabbedObject.layer = 0;
+               // objectTarget.transform.position = objectTargetOrigionalLocation.transform.position;
                 toolManager.ToolChange(1);
               //  StopCoroutine("Lazer");
                
