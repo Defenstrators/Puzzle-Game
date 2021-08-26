@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 2832680846971676979}
   m_Layer: 0
   m_Name: Pressure Doors
-  m_TagString: Enviroment
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -115,14 +115,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2832680846971676978}
     m_Modifications:
-    - target: {fileID: -9041531117694079289, guid: ee01c9eff0c39634dbea21d741463f0b, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 050af51659c35884aa572e48f2926d17, type: 2}
-    - target: {fileID: -9041531117694079289, guid: ee01c9eff0c39634dbea21d741463f0b, type: 3}
-      propertyPath: m_Materials.Array.data[2]
-      value: 
-      objectReference: {fileID: 2100000, guid: ff01c187ccc86fd48b6d521604a4c45c, type: 2}
     - target: {fileID: -8679921383154817045, guid: ee01c9eff0c39634dbea21d741463f0b, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -179,26 +171,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -453615173548524335, guid: ee01c9eff0c39634dbea21d741463f0b, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 050af51659c35884aa572e48f2926d17, type: 2}
-    - target: {fileID: -453615173548524335, guid: ee01c9eff0c39634dbea21d741463f0b, type: 3}
-      propertyPath: m_Materials.Array.data[2]
-      value: 
-      objectReference: {fileID: 2100000, guid: ff01c187ccc86fd48b6d521604a4c45c, type: 2}
     - target: {fileID: 919132149155446097, guid: ee01c9eff0c39634dbea21d741463f0b, type: 3}
       propertyPath: m_Name
       value: Lost Robot Door
       objectReference: {fileID: 0}
-    - target: {fileID: 8154423001637701202, guid: ee01c9eff0c39634dbea21d741463f0b, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: de84223f1325378479273cd7841c3a26, type: 2}
-    - target: {fileID: 8154423001637701202, guid: ee01c9eff0c39634dbea21d741463f0b, type: 3}
-      propertyPath: m_Materials.Array.data[1]
-      value: 
-      objectReference: {fileID: 2100000, guid: 95bfaf5fa056dcb4297ac824c399adfd, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee01c9eff0c39634dbea21d741463f0b, type: 3}
 --- !u!4 &4811345361730713611 stripped

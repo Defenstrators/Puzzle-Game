@@ -6,22 +6,23 @@ public class PlayerMovement : MonoBehaviour
 {
 
     CharacterController controller;
-
-    [Header("Movement Settings")]
     public float jumpHeight; // how high the player can jump
     public float gravity; // how fast the player will fall
     public float moveSpeed; // how fast the player will move
     public float fullSpeedTimer; // how long untill the player hits max speed
     public float coyoteTime; // how long can the player stand in mid air before gravity takes effect
-    [SerializeField] float acceleration;
-    [SerializeField] float deceleration;
-  
+    public float mouseSense; // multiplyer for how much the mouse will rotate the camera
 
     Vector3 playerVelocity;
     bool canJump;
-    [SerializeField] float moveSpeedMultiplyer;
+float moveSpeedMultiplyer;
     
     float cameraRotation;
+
+
+    public GameObject firstPersonCamera;
+    public GameObject thirdPersonCamera;
+    public GameObject head;
     bool isFirstPerson;
     [SerializeField] Animator animator;
     public float yLookLimitation;
@@ -40,31 +41,35 @@ public class PlayerMovement : MonoBehaviour
     void Update() 
     { 
          Movement();
+         CameraMovement();
+
          if(Input.GetKeyDown(KeyCode.Escape)) Application.Quit();
     }
     
     void Movement()
-    {   
-        if(Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0)
+    {
+        
+        if(Input.GetAxis("Vertical") > 0.1 || Input.GetAxis("Vertical") < 0.1 || Input.GetAxis("Horizontal") > 0.1 || Input.GetAxis("Horizontal") < 0.1)
         {
-            fullSpeedTimer += Time.deltaTime * acceleration;
             moveSpeedMultiplyer = Mathf.Lerp(moveSpeedMultiplyer, 1, fullSpeedTimer);
-            animator.SetBool("isWalking", true);
-            animator.SetFloat("AnimationSpeed", moveSpeedMultiplyer * 2);
-            
         }
         else
         {
-            moveSpeedMultiplyer -= Time.deltaTime * deceleration;
-            animator.SetBool("isWalking", false);
-            
+            moveSpeedMultiplyer = 0;
         }
-        fullSpeedTimer = Mathf.Clamp(fullSpeedTimer, 0, 1);
      
         //Moving  
         Vector3 move = Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime * transform.TransformDirection(Vector3.forward) + 
-            Input.GetAxis("Horizontal") * (moveSpeed / 2) * Time.deltaTime * transform.TransformDirection(Vector3.right).normalized; //this will move the player foward, back, left and right
+            Input.GetAxis("Horizontal") * (moveSpeed / 2) * Time.deltaTime * transform.TransformDirection(Vector3.right); //this will move the player foward, back, left and right
         
+        if(Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0 )
+        {
+            animator.SetBool("isWalking", true);
+        }
+        else
+        {
+            animator.SetBool("isWalking", false);
+        }
         controller.Move((move * moveSpeed) * moveSpeedMultiplyer);
 
         if(Input.GetButtonDown("Jump") && canJump)
@@ -84,8 +89,6 @@ public class PlayerMovement : MonoBehaviour
             
         }
 
-        // coyote time, this will give the player an short window. after stepping of a collider, to jump from it, even when there not on it. this will 
-        // make jumps less fustrating
         if(controller.isGrounded)
         {
             canJump = true;
@@ -98,6 +101,38 @@ public class PlayerMovement : MonoBehaviour
             {
                 canJump = false;
             }
+        }
+    }
+    
+    void CameraMovement()
+    {
+        transform.Rotate(new Vector3(0, Input.GetAxis("Mouse X") * mouseSense, 0)); // this will rotate the player
+        //head.transform.Rotate(new Vector3(-Input.GetAxis("Mouse Y") * mouseSense, 0, 0)); // this will move the head up and down
+
+        cameraRotation += -Input.GetAxis("Mouse Y") * (mouseSense / Camera.main.aspect);
+
+        cameraRotation = Mathf.Clamp(cameraRotation, -yLookLimitation, yLookLimitation);
+
+         head.transform.localRotation = Quaternion.Euler(cameraRotation, 0, 0);
+    }
+
+    public void ChangeLookLimiters(int value)
+    {
+        yLookLimitation = value;
+        print("Changed Look Limters to: " + value);
+    }
+
+    public void ChangePrespective(bool prespective)
+    {
+        if (prespective == true)
+        {
+              firstPersonCamera.SetActive(true);
+             thirdPersonCamera.SetActive(false); 
+        }
+        else
+        {
+              firstPersonCamera.SetActive(false);
+             thirdPersonCamera.SetActive(true);
         }
     }
 }

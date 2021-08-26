@@ -16,11 +16,8 @@ public class Switch : MonoBehaviour
     private bool m_playerInTriggerCheck;
     private DoorTriggeredCheck[] m_DoorTriggeredChecks;
     public GameObject externalDoors;
-
-    [SerializeField] private Transform[] _TransformsMaterials;
-    [SerializeField] private Material[] _Materials;
     
-    // public Animator m_Animator;
+    public Animator m_Animator;
     
     private bool eKey;
 
@@ -62,10 +59,7 @@ public class Switch : MonoBehaviour
                 
             }
         }
-        foreach (Transform transform in _TransformsMaterials) {
-            transform.GetComponent<Renderer>().material = _Materials[1];
-        }
-       // m_Animator.SetBool("isFlipped", true);
+        m_Animator.SetBool("isFlipped", true);
         yield return null;
     }
     /// <summary>
@@ -81,10 +75,7 @@ public class Switch : MonoBehaviour
                 }
             }
         }
-       // m_Animator.SetBool("isFlipped", false);
-        foreach (Transform transform in _TransformsMaterials) {
-            transform.GetComponent<Renderer>().material = _Materials[0];
-        }
+        m_Animator.SetBool("isFlipped", false);
         yield return null;
     }
 

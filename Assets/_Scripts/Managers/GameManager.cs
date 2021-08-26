@@ -48,10 +48,4 @@ public class GameManager : MonoBehaviour {
         StartCoroutine(GetSceneLoadProgress());
     }
 
-    private void Update() {
-        if(Input.GetKeyDown(KeyCode.Escape))
-        {
-            Application.Quit();
-        }
-    }
 }
