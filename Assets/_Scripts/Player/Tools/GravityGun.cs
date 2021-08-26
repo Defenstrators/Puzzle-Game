@@ -136,6 +136,7 @@ public class GravityGun : MonoBehaviour
                      if(Input.GetKey(KeyCode.W)) grabbedObject.GetComponent<Rigidbody>().AddForce(MuzzlePoint.transform.forward * (LaunchForce * movingMultiplyer)); // if the player is moving, apply a greater force to the grabbed object
                      else grabbedObject.GetComponent<Rigidbody>().AddForce(MuzzlePoint.transform.forward * LaunchForce); // else just use normal values
                 }
+                grabbedObject.layer = 3;
                 grabbedObject = null;
                 hasGrabbedObject = false;
                 gameObject.GetComponentInParent<CameraController>().ChangeLookLimiters(80); // set the player vertical look limiters to defult
@@ -143,7 +144,6 @@ public class GravityGun : MonoBehaviour
                 lazerLineRenderer.enabled = true; // turn the line render back on
                 DropLineRenderer.enabled = false;
                 cube.SetActive(false);
-                grabbedObject.layer = 0;
                // objectTarget.transform.position = objectTargetOrigionalLocation.transform.position;
                 toolManager.ToolChange(1);
               //  StopCoroutine("Lazer");

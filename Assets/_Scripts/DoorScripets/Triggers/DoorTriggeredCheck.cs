@@ -75,7 +75,7 @@ public class DoorTriggeredCheck : MonoBehaviour {
       private Switch[] _Switches;
       public void DoorControl(float t) {
          m_Triggered += t;
-         if (m_Triggered == m_Triggers.Length && m_CoroutineBuffer == false) {
+         if (m_Triggered >= m_Triggers.Length && m_CoroutineBuffer == false) {
             m_OpenDoor = true;
             StartCoroutine(OpenDoor());
             m_Animator.SetBool("isOpen", true);
