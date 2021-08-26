@@ -36,7 +36,7 @@ public class SpikeController : MonoBehaviour {
         _Animator = GetComponent<Animator>();
     }
     private void Update() {
-        Debug.Log(Vector3.Distance(this.transform.position, _player.transform.position));
+        //Debug.Log(Vector3.Distance(this.transform.position, _player.transform.position));
         switch (m_SpikeType) {
             case SpikeType.Normal:
                 if (_playerFound) { StartCoroutine(SpikeTrigger()); } else { StartCoroutine(SpikeRetract()); }
@@ -44,9 +44,11 @@ public class SpikeController : MonoBehaviour {
             case SpikeType.TrollSpike:
                 
                 if (_playerFound && _player != null) {
-                    if (Vector3.Distance(this.transform.position, _player.transform.position) <= _activeDistanceFromSpike) {
+                    if (Vector3.Distance(this.transform.position, _player.transform.position) >= _disableDistanceFromSpike) {
                         StartCoroutine(SpikeTrigger());
-                    } else if (Vector3.Distance(this.transform.position, _player.transform.position) >= _disableDistanceFromSpike) {
+                    } else if (Vector3.Distance(this.transform.position, _player.transform.position) <= _activeDistanceFromSpike) {
+                        StartCoroutine(SpikeRetract());
+                    } else if (Vector3.Distance(this.transform.position, _player.transform.position) <= 2) {
                         StartCoroutine(SpikeRetract());
                     }
                 }
