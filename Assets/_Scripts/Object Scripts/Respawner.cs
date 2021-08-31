@@ -7,6 +7,8 @@ public class Respawner : MonoBehaviour
 {
     public string[] objectRespawnTags;
     public float objectFadeTime;
+    [SerializeField] bool respawnAtCheckpoint;
+    public Vector3 spawnpoint;
     bool lerping;
     GameObject _Object;
     float intesity;
@@ -15,8 +17,9 @@ public class Respawner : MonoBehaviour
     private void OnTriggerEnter(Collider other) 
     {
         if(other.tag == "Player")
-        {
-            gameObject.GetComponentInParent<RoomManager>().resetRoom();
+        {   if(respawnAtCheckpoint) other.transform.position = spawnpoint;
+            else gameObject.GetComponentInParent<RoomManager>().resetRoom();
+            
         }
         else if(objectRespawnTags.Contains(other.tag))
         {
