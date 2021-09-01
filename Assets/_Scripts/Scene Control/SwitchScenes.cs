@@ -14,6 +14,4 @@ public class SwitchScenes : MonoBehaviour {
         GameManager.instance.LoadNextLevel();
     }
 
-
-
 }
