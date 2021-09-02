@@ -251,33 +251,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2691811381065115706, guid: 61eb71cbe4a04b04987c0376430372e9, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3561513817777834304, guid: 61eb71cbe4a04b04987c0376430372e9, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4315567210304149143, guid: 61eb71cbe4a04b04987c0376430372e9, type: 3}
       propertyPath: m_Name
       value: Transition / Loading Screen
-      objectReference: {fileID: 0}
-    - target: {fileID: 5580076076421332090, guid: 61eb71cbe4a04b04987c0376430372e9, type: 3}
-      propertyPath: m_Depth
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 5580076076421332090, guid: 61eb71cbe4a04b04987c0376430372e9, type: 3}
-      propertyPath: m_ClearFlags
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 5580076076421332090, guid: 61eb71cbe4a04b04987c0376430372e9, type: 3}
-      propertyPath: orthographic
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5580076076421332090, guid: 61eb71cbe4a04b04987c0376430372e9, type: 3}
-      propertyPath: m_CullingMask.m_Bits
-      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 5784914971708186161, guid: 61eb71cbe4a04b04987c0376430372e9, type: 3}
       propertyPath: m_Pivot.x
@@ -362,18 +338,6 @@ PrefabInstance:
     - target: {fileID: 5784914971708186161, guid: 61eb71cbe4a04b04987c0376430372e9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7918080669138193663, guid: 61eb71cbe4a04b04987c0376430372e9, type: 3}
-      propertyPath: m_CameraType
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7918080669138193663, guid: 61eb71cbe4a04b04987c0376430372e9, type: 3}
-      propertyPath: m_RenderPostProcessing
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7918080669138193663, guid: 61eb71cbe4a04b04987c0376430372e9, type: 3}
-      propertyPath: m_VolumeLayerMask.m_Bits
-      value: 254
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61eb71cbe4a04b04987c0376430372e9, type: 3}
