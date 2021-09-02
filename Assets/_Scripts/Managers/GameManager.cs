@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using AsyncOperation = UnityEngine.AsyncOperation;
-using Scene = UnityEditor.SearchService.Scene;
+//using Scene = UnityEditor.SearchService.Scene;
 
 public class GameManager : MonoBehaviour {
     public static GameManager instance;  // SingleTon Lazy and Unsafe But Works stably
