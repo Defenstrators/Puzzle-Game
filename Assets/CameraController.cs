@@ -12,6 +12,10 @@ public class CameraController : MonoBehaviour
     float cameraRotation;
     bool cutScene; // if the player is currently in a cutscene
 
+    private void Start() 
+    {
+        mouseSense = PlayerPrefs.GetFloat("mouseSence");
+    }
     void Update()
     {
        if(!cutScene)PlayerControll();

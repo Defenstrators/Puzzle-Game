@@ -5,18 +5,31 @@ using UnityEngine;
 public class MainMenu : MonoBehaviour
 {
 
-    public void SwitchMenu(int menu) // 1 is main, 2 is settings, 3 is level select.
+    [SerializeField] GameObject[] menus;
+    public void SwitchMenu(int menuID) // 1 is main, 2 is settings, 3 is level select.
     {
-        switch (menu)
+        foreach(GameObject menuz in menus)
         {
-            case 1:
-
-            break;
+            menuz.gameObject.SetActive(false);
         }
 
+        menus[menuID].SetActive(true);
 
-        }
+
     }
 
 
-}
+        
+
+
+
+
+    }
+
+
+   
+
+
+
+
+

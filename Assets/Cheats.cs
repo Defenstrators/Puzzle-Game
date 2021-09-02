@@ -30,6 +30,12 @@ public class Cheats : MonoBehaviour
            }
         
        }
+       if(Input.GetKeyDown(KeyCode.F12))
+       {
+           PlayerPrefs.DeleteAll();
+           PlayerPrefs.SetFloat("mouseSence", 2);
+           PlayerPrefs.SetFloat("audioLevel", 0.5f);
+       }
 
    }
 }
