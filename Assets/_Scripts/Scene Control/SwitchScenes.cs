@@ -14,8 +14,4 @@ public class SwitchScenes : MonoBehaviour {
         GameManager.instance.LoadNextLevel();
     }
 
-    public void LevelPicker(int toBeLoadedScreen = 2) {
-        GameManager.instance.ScenePicker(toBeLoadedScreen);
-    }
-
 }
