@@ -18,7 +18,8 @@ public class GameManager : MonoBehaviour {
 
     private void Awake() {
         instance = this;
-        SceneManager.LoadScene((int)SceneIndexes.TITLE_SCREEN, LoadSceneMode.Additive);     // Loads Title Screen.
+        if(SceneManager.GetActiveScene().buildIndex == 0) SceneManager.LoadScene((int)SceneIndexes.TITLE_SCREEN, LoadSceneMode.Additive);     // Loads Title Screen.
+        
     }
 
     private List<AsyncOperation> _ScenesLoading = new List<AsyncOperation>(); // List Of Scenes Loading And Unloading During Loading Screen.
@@ -45,8 +46,10 @@ public class GameManager : MonoBehaviour {
     public IEnumerator GetSceneLoadProgress() {
         for (int i = 0; i < _ScenesLoading.Count; i++) {
             while (!_ScenesLoading[i].isDone) {
-                yield return null;
+                yield return new WaitForEndOfFrame();
             }
+               SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(_CurrentScene));
+
         }
         // Note Can added % of loading on loading screen and a bar (If needed) here.
         
@@ -69,8 +72,12 @@ public class GameManager : MonoBehaviour {
 /// </summary>
 /// <param name="i"></param>
     public void ScenePicker(int i) {
-        StartCoroutine(Loading(i));
+        sceneRemoval = SceneManager.GetActiveScene().buildIndex;
         _CurrentScene = i;
+        StartCoroutine(Loading(i));
+       
+        
+        
     }
 
     /// <summary>
@@ -79,10 +86,9 @@ public class GameManager : MonoBehaviour {
     /// <param name="i"></param>
     /// <returns> Wait Time. </returns>
     private IEnumerator Loading(int i) {
-        Debug.Log(sceneRemoval);
-        Debug.Log(_CurrentScene);
+        Debug.Log("sceneRemoval : " + sceneRemoval);
+        Debug.Log("currentScene: "+ _CurrentScene);
         transitionAnimator.Play("Close");
-        
         yield return new WaitForSeconds(transitionAnimator.GetCurrentAnimatorStateInfo(0).length + 1f);
         _ScenesLoading.Add(SceneManager.UnloadSceneAsync((int)sceneRemoval));
         if (i > 0.5f) {

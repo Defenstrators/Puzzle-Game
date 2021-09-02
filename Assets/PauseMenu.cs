@@ -25,4 +25,9 @@ public class PauseMenu : MonoBehaviour
         cc.cutScene = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
+
+    public void Exit()
+    {
+        Time.timeScale = 1;
+    }
 }

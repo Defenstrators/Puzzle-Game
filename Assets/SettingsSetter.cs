@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SettingsSetter : MonoBehaviour
 {
+
+    [SerializeField] int levelID;
     void Start()
     {
+        SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(levelID));
         float volume = PlayerPrefs.GetFloat("audioLevel");
         AudioSource[] sources = Object.FindObjectsOfType<AudioSource>();
         print(volume);
