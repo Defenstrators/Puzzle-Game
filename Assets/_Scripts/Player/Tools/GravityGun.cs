@@ -58,11 +58,11 @@ public class GravityGun : MonoBehaviour
                 DropLineRenderer.SetPosition(0, grabbedObject.transform.position);
                 DropLineRenderer.SetPosition(1, hitPoint); // theese will draw a line from the object, to the previously mentined cube;
                 }
-                if(Input.GetButtonDown("Fire1"))
+                if(Input.GetKeyDown(KeyCode.E))
                 {
                     DropObject(false);
                 }
-                if(Input.GetButtonDown("Fire2"))
+                if(Input.GetButtonDown("Fire1"))
                 {
                     DropObject(true);     
                 }
@@ -97,11 +97,12 @@ public class GravityGun : MonoBehaviour
                             if(Input.GetKeyDown(KeyCode.E))
                             {
                                 grabbedObject = hit.transform.gameObject; 
+                                grabbedObject.layer = 6;
                                 hasGrabbedObject = true;
                                 grabbedObject.gameObject.GetComponent<Rigidbody>().isKinematic = true; // we dont want the object to be affected by gravity when grabbed by the player;
-                                gameObject.GetComponentInParent<PlayerMovement>().ChangeLookLimiters(cameraLookLimiter); // change the look limiters to constrained ones so the player cant ram the object under them.
+                                gameObject.GetComponentInParent<CameraController>().ChangeLookLimiters(cameraLookLimiter); // change the look limiters to constrained ones so the player cant ram the object under them.
                                 lazerLineRenderer.enabled = false; // disable the lazer
-                                gameObject.GetComponentInParent<PlayerMovement>().ChangePrespective(false); // zoom the camera out
+                               // gameObject.GetComponentInParent<PlayerMovement>().ChangePrespective(false); // zoom the camera out
                                 source.PlayOneShot(pickupSound); //play the pickup sound 
                                 cube.SetActive(true);
                                 DropLineRenderer.enabled = true;
@@ -118,15 +119,6 @@ public class GravityGun : MonoBehaviour
                         }
                     }
                     else laserMaterial.color = Color.red; // change the lazer to red so the player knows they cant pick somthing up.
-
-                    if(Input.GetButtonDown("Fire2"))
-                    {
-                        gameObject.GetComponentInParent<PlayerMovement>().ChangePrespective(true); // this will zoom the camera in, to help the player aim
-                    }
-                    if(Input.GetButtonUp("Fire2"))
-                    {
-                        gameObject.GetComponentInParent<PlayerMovement>().ChangePrespective(false); // this will aim the camera out
-                    }
             }
          }
     }
@@ -144,14 +136,15 @@ public class GravityGun : MonoBehaviour
                      if(Input.GetKey(KeyCode.W)) grabbedObject.GetComponent<Rigidbody>().AddForce(MuzzlePoint.transform.forward * (LaunchForce * movingMultiplyer)); // if the player is moving, apply a greater force to the grabbed object
                      else grabbedObject.GetComponent<Rigidbody>().AddForce(MuzzlePoint.transform.forward * LaunchForce); // else just use normal values
                 }
+                grabbedObject.layer = 3;
                 grabbedObject = null;
                 hasGrabbedObject = false;
-                gameObject.GetComponentInParent<PlayerMovement>().ChangeLookLimiters(80); // set the player vertical look limiters to defult
+                gameObject.GetComponentInParent<CameraController>().ChangeLookLimiters(80); // set the player vertical look limiters to defult
                 source.PlayOneShot(placeSound); // play the placing sound
                 lazerLineRenderer.enabled = true; // turn the line render back on
                 DropLineRenderer.enabled = false;
                 cube.SetActive(false);
-                objectTarget.transform.position = objectTargetOrigionalLocation.transform.position;
+               // objectTarget.transform.position = objectTargetOrigionalLocation.transform.position;
                 toolManager.ToolChange(1);
               //  StopCoroutine("Lazer");
                
