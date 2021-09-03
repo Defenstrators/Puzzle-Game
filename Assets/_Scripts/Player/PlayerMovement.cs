@@ -40,7 +40,7 @@ public class PlayerMovement : MonoBehaviour
     void Update() 
     { 
          Movement();
-         if(Input.GetKeyDown(KeyCode.Escape)) Application.Quit();
+         //if(Input.GetKeyDown(KeyCode.Escape)) Application.Quit();
     }
     
     void Movement()

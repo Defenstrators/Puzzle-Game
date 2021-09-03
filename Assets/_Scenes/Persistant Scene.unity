@@ -251,6 +251,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1779270986438568477, guid: 61eb71cbe4a04b04987c0376430372e9, type: 3}
+      propertyPath: m_Color.b
+      value: 0.21595761
+      objectReference: {fileID: 0}
+    - target: {fileID: 1779270986438568477, guid: 61eb71cbe4a04b04987c0376430372e9, type: 3}
+      propertyPath: m_Color.g
+      value: 0.21595761
+      objectReference: {fileID: 0}
+    - target: {fileID: 1779270986438568477, guid: 61eb71cbe4a04b04987c0376430372e9, type: 3}
+      propertyPath: m_Color.r
+      value: 0.21698111
+      objectReference: {fileID: 0}
+    - target: {fileID: 2454538828931291652, guid: 61eb71cbe4a04b04987c0376430372e9, type: 3}
+      propertyPath: m_Color.b
+      value: 0.21595761
+      objectReference: {fileID: 0}
+    - target: {fileID: 2454538828931291652, guid: 61eb71cbe4a04b04987c0376430372e9, type: 3}
+      propertyPath: m_Color.g
+      value: 0.21595761
+      objectReference: {fileID: 0}
+    - target: {fileID: 2454538828931291652, guid: 61eb71cbe4a04b04987c0376430372e9, type: 3}
+      propertyPath: m_Color.r
+      value: 0.21698111
+      objectReference: {fileID: 0}
     - target: {fileID: 4315567210304149143, guid: 61eb71cbe4a04b04987c0376430372e9, type: 3}
       propertyPath: m_Name
       value: Transition / Loading Screen
