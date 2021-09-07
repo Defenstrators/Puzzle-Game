@@ -74,6 +74,7 @@ public class NewMovingPlatforms : MonoBehaviour
     }
     void StartPlatform()
     {
+        print("starting platform");
         stopped = false;
     }
 
