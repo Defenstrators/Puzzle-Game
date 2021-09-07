@@ -16,7 +16,14 @@ public class NewMovingPlatforms : MonoBehaviour
     bool stopped;
      private bool playerParented;
     GameObject player;
+    AudioSource source;
+    [SerializeField] AudioClip movingSound;
+    [SerializeField] AudioClip stopingSound;
 
+    private void Start() {
+        source = gameObject.GetComponent<AudioSource>();
+        StartCoroutine("PlaySound");
+    }
     void Update()
     {
         if(Vector3.Distance(transform.position, destinations[currentDestination].transform.position) < 0.1)
@@ -25,7 +32,8 @@ public class NewMovingPlatforms : MonoBehaviour
             if(reversing) currentDestination--;
             else currentDestination++;
             if(currentDestination == 0) reversing = false;
-
+            source.Stop();
+            source.PlayOneShot(stopingSound);
             stopped = true;
             Invoke("StartPlatform", stopTime);
         }
@@ -85,5 +93,15 @@ public class NewMovingPlatforms : MonoBehaviour
           lr.SetPosition(i, destinations[i].transform.localPosition);
           print(" oui ");
       }
+    }
+
+    IEnumerator PlaySound()
+    {
+        while(!stopped)
+        {
+            source.PlayOneShot(movingSound);
+            yield return new WaitForSeconds(movingSound.length);
+        }
+        
     }
 }

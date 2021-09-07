@@ -44,14 +44,14 @@ public class Respawner : MonoBehaviour
     {
        if(lerping)
        {
-        intesity = Mathf.Lerp(-1, 1, currentTime);
-        if(currentTime <= objectFadeTime) currentTime += Time.deltaTime;
+            intesity = Mathf.Lerp(-1, 1, currentTime);
+            
+            if(currentTime <= objectFadeTime) currentTime += Time.deltaTime;
 
-        foreach(Material material in _Object.GetComponentInChildren<Renderer>().materials)
-        {
-            material.SetFloat("DissolveAmount", intesity);     
-        }
-        
+            foreach(Material material in _Object.GetComponentInChildren<Renderer>().materials)
+            {
+                material.SetFloat("DissolveAmount", intesity);     
+            }
        }
     }
 }
