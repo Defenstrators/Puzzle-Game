@@ -33,7 +33,7 @@ public class NewMovingPlatforms : MonoBehaviour
             else currentDestination++;
             if(currentDestination == 0) reversing = false;
             source.Stop();
-            source.PlayOneShot(stopingSound);
+          //  source.PlayOneShot(stopingSound);
             stopped = true;
             Invoke("StartPlatform", stopTime);
         }
@@ -100,8 +100,8 @@ public class NewMovingPlatforms : MonoBehaviour
     {
         while(!stopped)
         {
-            source.PlayOneShot(movingSound);
-            yield return new WaitForSeconds(movingSound.length);
+          //  source.PlayOneShot(movingSound);
+           yield return new WaitForSeconds(movingSound.length);
         }
         
     }

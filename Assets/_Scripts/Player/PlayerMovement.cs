@@ -16,6 +16,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float acceleration;
     [SerializeField] float deceleration;
    [SerializeField] Vector3 playerVelocity;
+   [SerializeField] float airSpeedMultiplyer;
+   [SerializeField] float controllableAirDropoffMultiplyer;
     bool canJump;
     [SerializeField] float moveSpeedMultiplyer;
     float trueSprintingMultiplyer; // what sprinting multiplyer will be used in the movement fomula.
@@ -25,8 +27,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Animator animator;
     public float yLookLimitation;
     [SerializeField] Vector3 move;
-    [SerializeField] float maxZVelocity;
+    [SerializeField] Vector3 maxVelocity;
+    [SerializeField] Vector3 airControllMultiplyer;
     float trueCoyoteTime;
+    [SerializeField] float dropoff = 1;
     void Start() 
     {
         controller = gameObject.GetComponent<CharacterController>();
@@ -70,14 +74,21 @@ public class PlayerMovement : MonoBehaviour
             move = Input.GetAxis("Vertical") * transform.TransformDirection(Vector3.forward) + 
             Input.GetAxis("Horizontal") *  transform.TransformDirection(Vector3.right); //this will move the player foward, back, left and right
             move = move *  ((moveAcceleration * sprintingMultiplyer) * moveSpeedMultiplyer) * Time.deltaTime;
-            move.z = Mathf.Clamp(move.z, -maxZVelocity, maxZVelocity);
+            ClampVectors();
             controller.Move(move);
         }
         else
         {
            // lastVelocity.z += Input.GetAxis("Vertical") * Time.deltaTime * 0.1f;
-            controller.Move(move);
-            
+          //  if(Input.GetKey(KeyCode.S)) dropoff -= Time.deltaTime * controllableAirDropoffMultiplyer; 
+            // move.x += (Input.GetAxisRaw("Horizontal") * Time.deltaTime * airControllMultiplyer.x);
+            // move.z +=  (Input.GetAxisRaw("Vertical") * Time.deltaTime * airControllMultiplyer.z);
+
+            move += ((Input.GetAxisRaw("Vertical") * transform.TransformDirection(Vector3.forward)) * airControllMultiplyer.x 
+                + (Input.GetAxisRaw("Horizontal") * transform.TransformDirection(Vector3.right)) * airControllMultiplyer.z) * Time.deltaTime;
+                
+             ClampVectors();
+             controller.Move((move * airSpeedMultiplyer * dropoff) * Time.timeScale);
         }
         
         if(Input.GetButtonDown("Jump") && canJump)
@@ -86,7 +97,7 @@ public class PlayerMovement : MonoBehaviour
             canJump = false;
         }
 
- 
+        
         playerVelocity.y += gravity * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime); 
 
@@ -103,6 +114,7 @@ public class PlayerMovement : MonoBehaviour
         {
             canJump = true;
             trueCoyoteTime = coyoteTime;
+            dropoff = 1;
         }
         else
         {
@@ -112,6 +124,13 @@ public class PlayerMovement : MonoBehaviour
                 canJump = false;
             }
         }
+    }
+
+    void ClampVectors()
+    {
+            move.x = Mathf.Clamp(move.x, -maxVelocity.x, maxVelocity.x);
+            move.y = Mathf.Clamp(move.y, -maxVelocity.y, maxVelocity.y);
+            move.z = Mathf.Clamp(move.z, -maxVelocity.z, maxVelocity.z);
     }
 }
 
