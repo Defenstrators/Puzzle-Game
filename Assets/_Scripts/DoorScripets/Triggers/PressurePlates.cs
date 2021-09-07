@@ -19,7 +19,7 @@ public class PressurePlates : MonoBehaviour {
 
     private DoorTriggeredCheck[] m_DoorTriggeredChecks;
 
-    private void OnTriggerEnter(Collider other) {
+    private void OnTriggerStay(Collider other) {
         if (isTriggered == false) {
             if (other.tag == "Interactable" || other.tag == "Player") {
                 isTriggered = true;

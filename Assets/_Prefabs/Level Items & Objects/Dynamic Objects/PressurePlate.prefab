@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 5140311031339437731}
   - component: {fileID: 3404308576317898251}
   - component: {fileID: 8282814846107731868}
-  m_Layer: 2
+  m_Layer: 3
   m_Name: PressurePlate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -63,8 +63,8 @@ MonoBehaviour:
   Triggered: 0
   glowMesh: {fileID: 5792121767678591152}
   Materials:
-  - {fileID: 2100000, guid: 29c87fa38d96f304fab4b2139ddb898f, type: 2}
-  - {fileID: 2100000, guid: 530a0327df4ab8146b1beba6995567ce, type: 2}
+  - {fileID: 2100000, guid: 8a1be3dc003656a4d95f320aded8c57a, type: 2}
+  - {fileID: 2100000, guid: dfd36d090d60fa04e92754f8d0754b74, type: 2}
   externalDoors: {fileID: 0}
 --- !u!65 &8282814846107731868
 BoxCollider:
@@ -77,22 +77,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.4, y: 1.2, z: 1.4}
-  m_Center: {x: 0, y: 0.5, z: 0}
---- !u!64 &1757766842
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6156738384809317872}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -754667642709018251, guid: efa423ecc507c234c89159a2886f1e91, type: 3}
+  m_Size: {x: 1.3, y: 0.3, z: 1.3}
+  m_Center: {x: 0, y: 0.38, z: 0}
 --- !u!95 &587917278
 Animator:
   serializedVersion: 3
@@ -122,7 +108,7 @@ PrefabInstance:
     - target: {fileID: -8951283461271776391, guid: efa423ecc507c234c89159a2886f1e91, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 530a0327df4ab8146b1beba6995567ce, type: 2}
+      objectReference: {fileID: 2100000, guid: dfd36d090d60fa04e92754f8d0754b74, type: 2}
     - target: {fileID: -8679921383154817045, guid: efa423ecc507c234c89159a2886f1e91, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -187,9 +173,21 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0.0012
       objectReference: {fileID: 0}
+    - target: {fileID: 337828566330050611, guid: efa423ecc507c234c89159a2886f1e91, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 492660243433063993, guid: efa423ecc507c234c89159a2886f1e91, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: efa423ecc507c234c89159a2886f1e91, type: 3}
       propertyPath: m_Name
       value: Lost_Robot_Pressure_Plate
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: efa423ecc507c234c89159a2886f1e91, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4482618790090186966, guid: efa423ecc507c234c89159a2886f1e91, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -199,6 +197,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 12a5f106128a2ac4baf0ea329c35bb15, type: 2}
+    - target: {fileID: 6116584669533791195, guid: efa423ecc507c234c89159a2886f1e91, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: efa423ecc507c234c89159a2886f1e91, type: 3}
 --- !u!1 &6874198101194075800 stripped
@@ -209,11 +211,6 @@ GameObject:
 --- !u!4 &6065748829043831842 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: efa423ecc507c234c89159a2886f1e91, type: 3}
-  m_PrefabInstance: {fileID: 6027899950671287241}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &6156738384809317872 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 492660243433063993, guid: efa423ecc507c234c89159a2886f1e91, type: 3}
   m_PrefabInstance: {fileID: 6027899950671287241}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &523858230396465170 stripped
