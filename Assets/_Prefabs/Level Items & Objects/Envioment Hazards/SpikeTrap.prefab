@@ -833,6 +833,8 @@ MonoBehaviour:
   objectRespawnTags:
   - Player
   objectFadeTime: 0
+  respawnAtCheckpoint: 0
+  spawnpoint: {x: 0, y: 0, z: 0}
 --- !u!135 &900278549
 SphereCollider:
   m_ObjectHideFlags: 0
