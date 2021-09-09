@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Movement Settings")]
     public float jumpHeight; // how high the player can jump
     public float gravity; // how fast the player will fall
-    public float moveAcceleration; // how fast the player will move
+    public float moveSpeed; // how fast the player will move
     public float fullSpeedTimer; // how long untill the player hits max speed
     public float coyoteTime; // how long can the player stand in mid air before gravity takes effect
     [SerializeField] float sprintingMultiplyer; // how much faster the player will move;
@@ -30,7 +30,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Vector3 maxVelocity;
     [SerializeField] Vector3 airControllMultiplyer;
     float trueCoyoteTime;
-    [SerializeField] float dropoff = 1;
     void Start() 
     {
         controller = gameObject.GetComponent<CharacterController>();
@@ -77,7 +76,7 @@ public class PlayerMovement : MonoBehaviour
         {
             move = Input.GetAxis("Vertical") * transform.TransformDirection(Vector3.forward) + 
             Input.GetAxis("Horizontal") *  transform.TransformDirection(Vector3.right); //this will move the player foward, back, left and right
-            move = move *  ((moveAcceleration * sprintingMultiplyer) * moveSpeedMultiplyer) * Time.deltaTime;
+            move = move *  ((moveSpeed * trueSprintingMultiplyer) * moveSpeedMultiplyer) * Time.deltaTime;
             ClampVectors();
             controller.Move(move);
         }
@@ -92,7 +91,7 @@ public class PlayerMovement : MonoBehaviour
                 + (Input.GetAxisRaw("Horizontal") * transform.TransformDirection(Vector3.right)) * airControllMultiplyer.z) * Time.deltaTime;
                 
              ClampVectors();
-             controller.Move((move * airSpeedMultiplyer * dropoff) * Time.timeScale);
+             controller.Move((move * airSpeedMultiplyer) * Time.timeScale);
         }
         
         if(Input.GetButtonDown("Jump") && canJump)
@@ -118,7 +117,6 @@ public class PlayerMovement : MonoBehaviour
         {
             canJump = true;
             trueCoyoteTime = coyoteTime;
-            dropoff = 1;
         }
         else
         {

@@ -1019,7 +1019,6 @@ GameObject:
   - component: {fileID: 7513840002255144914}
   - component: {fileID: 7513840002255144915}
   - component: {fileID: 7513840002255144926}
-  - component: {fileID: 338476063}
   - component: {fileID: 2894880794812212825}
   - component: {fileID: 45584461687188691}
   - component: {fileID: 2035240003668044542}
@@ -1086,10 +1085,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpHeight: 1.8
   gravity: -30
-  moveAcceleration: 2
+  moveSpeed: 2.5
   fullSpeedTimer: 0.2
-  coyoteTime: 0.4
-  sprintingMultiplyer: 3
+  coyoteTime: 0.2
+  sprintingMultiplyer: 2.5
   acceleration: 2
   deceleration: 1
   playerVelocity: {x: 0, y: 0, z: 0}
@@ -1100,7 +1099,6 @@ MonoBehaviour:
   move: {x: 0, y: 0, z: 0}
   maxVelocity: {x: 0.05, y: 0, z: 0.05}
   airControllMultiplyer: {x: 0.07, y: 0, z: 0.07}
-  dropoff: 1
 --- !u!143 &7513840002255144926
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1119,19 +1117,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &338476063
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7513840002255144916}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a960eb29e49d934a945ab3136668abd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  keys: 0
 --- !u!114 &2894880794812212825
 MonoBehaviour:
   m_ObjectHideFlags: 0
