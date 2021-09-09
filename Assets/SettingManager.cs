@@ -13,6 +13,12 @@ public class SettingManager : MonoBehaviour
     float senselevel;
 
     private void Start() {
+     
+        
+            PlayerPrefs.SetFloat("audioLevel", 0.5f);
+     
+            PlayerPrefs.SetFloat("mouseSence", 1f);
+
         InitiliseSliders();
     }
     private void Update() 

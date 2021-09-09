@@ -10,7 +10,7 @@ public class CameraController : MonoBehaviour
     [SerializeField] float lookLimiter; // how far up/down the player can look in degrees
 
     float cameraRotation;
-    bool cutScene; // if the player is currently in a cutscene
+    public bool cutScene; // if the player is currently in a cutscene
 
     private void Start() 
     {
