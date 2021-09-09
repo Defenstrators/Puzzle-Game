@@ -16,7 +16,7 @@ public class SettingsSetter : MonoBehaviour
         foreach(AudioSource sause in sources)
         {
             sause.volume = volume;
-            print("set volume: " + volume + " for: " + sause.gameObject);
+           // print("set volume: " + volume + " for: " + sause.gameObject);
         }
     }
 

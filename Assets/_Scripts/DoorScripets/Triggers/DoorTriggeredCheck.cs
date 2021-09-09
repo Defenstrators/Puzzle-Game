@@ -24,13 +24,16 @@ public class DoorTriggeredCheck : MonoBehaviour {
    private int m_Check;                  // Check how many are Triggered.
    private bool m_CoroutineBuffer;    // Buffer Check.
 
+   bool puzzleSolved;
+   [SerializeField] Elevator elevator;
+
    private void Start() {
       
       m_Animator = GetComponent<Animator>(); 
    }
    private void Update() {
 
-         Debug.Log(m_Triggered);
+         //Debug.Log(m_Triggered);
          switch (m_DoorTypes) {
             case DoorTypes.OpenNClose:
                if (m_OpenDoor & m_Triggered < m_Triggers.Length && m_CoroutineBuffer == false) {
@@ -48,7 +51,7 @@ public class DoorTriggeredCheck : MonoBehaviour {
 
             case DoorTypes.Disappear:
                if (m_OpenDoor) {
-                  gameObject.GetComponentInChildren<Transform>().gameObject.active = false;
+                  gameObject.GetComponentInChildren<Transform>().gameObject.SetActive(false);
                   gameObject.GetComponentInChildren<Transform>().gameObject.GetComponentInChildren<Collider>().enabled = false;
                }
                break;
@@ -79,6 +82,11 @@ public class DoorTriggeredCheck : MonoBehaviour {
             m_OpenDoor = true;
             StartCoroutine(OpenDoor());
             m_Animator.SetBool("isOpen", true);
+           if(!puzzleSolved)
+           {
+              elevator.PuzzleSolved();
+              puzzleSolved = true;
+           } 
          }
       }
    }
