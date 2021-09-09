@@ -17,7 +17,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float deceleration;
    [SerializeField] Vector3 playerVelocity;
    [SerializeField] float airSpeedMultiplyer;
-   [SerializeField] float controllableAirDropoffMultiplyer;
+   //[SerializeField] float controllableAirDropoffMultiplyer;
     bool canJump;
     [SerializeField] float moveSpeedMultiplyer;
     float trueSprintingMultiplyer; // what sprinting multiplyer will be used in the movement fomula.
@@ -45,10 +45,14 @@ public class PlayerMovement : MonoBehaviour
     {   
         if(Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0)
         {
-            moveSpeedMultiplyer += Time.deltaTime * acceleration;
+            if(controller.isGrounded)
+            {
+                moveSpeedMultiplyer += Time.deltaTime * acceleration;
             //moveSpeedMultiplyer = Mathf.Lerp(moveSpeedMultiplyer, 1, fullSpeedTimer);
             animator.SetBool("isWalking", true);
             animator.SetFloat("AnimationSpeed", moveSpeedMultiplyer * trueSprintingMultiplyer);
+            }
+            else animator.SetBool("isWalking", false);
         }
         else
         {

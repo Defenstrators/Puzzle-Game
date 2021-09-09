@@ -11,6 +11,7 @@ public class NewMovingPlatforms : MonoBehaviour
     public float stopTime;
     public string[] tagsToParent;
     public GameObject ray;
+    [SerializeField] bool defaltStop;
     int currentDestination;
     bool reversing;
     bool stopped;
