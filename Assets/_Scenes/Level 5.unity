@@ -1302,7 +1302,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d14e04b73de49ef439f30443b8341d2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectRespawnTags: []
+  objectRespawnTags:
+  - Interactable
   objectFadeTime: 0
   respawnAtCheckpoint: 1
   spawnpoint: {x: 0, y: 0, z: 0}
@@ -1906,7 +1907,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 53.29, y: 0, z: 11.8}
+  m_Size: {x: 53.29, y: 0.1, z: 11.8}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &116566354 stripped
 GameObject:
@@ -8011,7 +8012,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh19954
+  m_Name: pb_Mesh49926
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -20550,7 +20551,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-56676
+  m_Name: pb_Mesh50932
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -49179,7 +49180,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2013909272}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.97, z: 0}
+  m_LocalPosition: {x: 0, y: 7.11, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 105934404}
@@ -49210,7 +49211,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 53.29, y: 0, z: 11.8}
+  m_Size: {x: 53.29, y: 0.1, z: 11.8}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &2013909277
 MeshFilter:
