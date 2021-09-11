@@ -11,8 +11,8 @@ public string[] tags;
       if(tags.Contains(other.tag))
       {
           gameObject.GetComponentInParent<Respawner>().Hit1stTrigger(other.gameObject);
-          
+          print("cube hit trigger");
       }
-      print("trigger hit");
+      
   }
 }
