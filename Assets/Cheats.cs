@@ -7,6 +7,9 @@ public class Cheats : MonoBehaviour
    private void Update() 
    {
        if(Input.GetKeyDown(KeyCode.F9)) PlayerPrefs.DeleteAll();
+
+       if(Input.GetKeyDown(KeyCode.F7)) Time.timeScale = 3;
+       else Time.timeScale = 1;
        if(Input.GetKeyDown(KeyCode.F10))
        {
            DoorTriggeredCheck[] doors;

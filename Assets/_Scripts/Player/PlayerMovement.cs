@@ -20,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
    //[SerializeField] float controllableAirDropoffMultiplyer;
     bool canJump;
     [SerializeField] float moveSpeedMultiplyer;
-    float trueSprintingMultiplyer; // what sprinting multiplyer will be used in the movement fomula.
+    float trueSprintingMultiplyer = 1; // what sprinting multiplyer will be used in the movement fomula.
     
     float cameraRotation;
     bool isFirstPerson;
@@ -34,6 +34,7 @@ public class PlayerMovement : MonoBehaviour
     {
         controller = gameObject.GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
+        animator.SetFloat("AnimationSpeed", trueSprintingMultiplyer);
     }
 
     void Update() 

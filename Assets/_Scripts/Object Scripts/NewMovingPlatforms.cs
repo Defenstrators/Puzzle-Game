@@ -22,8 +22,8 @@ public class NewMovingPlatforms : MonoBehaviour
     [SerializeField] AudioClip stopingSound;
 
     private void Start() {
-        source = gameObject.GetComponent<AudioSource>();
-        StartCoroutine("PlaySound");
+      //  source = gameObject.GetComponent<AudioSource>();
+//        StartCoroutine("PlaySound");
     }
     void Update()
     {
@@ -33,7 +33,7 @@ public class NewMovingPlatforms : MonoBehaviour
             if(reversing) currentDestination--;
             else currentDestination++;
             if(currentDestination == 0) reversing = false;
-            source.Stop();
+//            source.Stop();
           //  source.PlayOneShot(stopingSound);
             stopped = true;
             Invoke("StartPlatform", stopTime);
@@ -97,13 +97,13 @@ public class NewMovingPlatforms : MonoBehaviour
       }
     }
 
-    IEnumerator PlaySound()
-    {
-        while(!stopped)
-        {
-          //  source.PlayOneShot(movingSound);
-           yield return new WaitForSeconds(movingSound.length);
-        }
+//     IEnumerator PlaySound()
+//     {
+//         while(!stopped)
+//         {
+//           //  source.PlayOneShot(movingSound);
+// //           yield return new WaitForSeconds(movingSound.length);
+//         }
         
-    }
+//     }
 }

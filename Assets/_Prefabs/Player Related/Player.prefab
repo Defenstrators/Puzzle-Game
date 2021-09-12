@@ -1084,7 +1084,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpHeight: 1.8
   gravity: -30
-  moveSpeed: 2
+  moveSpeed: 2.5
   fullSpeedTimer: 0.2
   coyoteTime: 0.2
   sprintingMultiplyer: 3
