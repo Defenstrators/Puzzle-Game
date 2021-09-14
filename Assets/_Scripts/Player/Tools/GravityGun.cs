@@ -40,7 +40,8 @@ public class GravityGun : MonoBehaviour
    {
        source = gameObject.GetComponent<AudioSource>();
        toolManager = GetComponentInParent<ToolManager>();
-     //  lazerLineRenderer.positionCount = lazerResolution;
+       lazerLineRenderer.positionCount = lazerResolution;
+       StartCoroutine("Lazer");
    }
     void Update()
     {
@@ -110,7 +111,7 @@ public class GravityGun : MonoBehaviour
                                 grabbedObject.transform.rotation = new Quaternion(0, 0, 0, 0); // reset the objects rotation, so when when the player roatats, it will rotate on the correct axis.
                                 grabbedObjectOffset = grabbedObject.GetComponent<GrabbableObject>().objectOffset;
                                 toolManager.ToolChange(2);
-                                //StartCoroutine("Lazer");
+                                StartCoroutine("Lazer");
 
                             
                             }
@@ -146,11 +147,12 @@ public class GravityGun : MonoBehaviour
                 cube.SetActive(false);
                // objectTarget.transform.position = objectTargetOrigionalLocation.transform.position;
                 toolManager.ToolChange(1);
-              //  StopCoroutine("Lazer");
+               StopCoroutine("Lazer");
                
     }
     IEnumerator Lazer()
     {
+        print("Corotienecalled");
         while(!grabbedObject)
         {
                 float offset = range / lazerResolution;

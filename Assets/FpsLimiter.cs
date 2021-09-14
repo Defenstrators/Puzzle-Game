@@ -17,7 +17,7 @@ public class FpsLimiter : MonoBehaviour
     }
     void Update()
     {
-        Application.targetFrameRate = fps; // this will be moved to start later, but this is just for chaning it at runtime
+        //Application.targetFrameRate = fps; // this will be moved to start later, but this is just for chaning it at runtime
         passedframes ++;
 
         averageFPS = Time.frameCount / Time.time;
