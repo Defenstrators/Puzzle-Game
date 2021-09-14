@@ -12,6 +12,8 @@ public class DoorTriggeredCheck : MonoBehaviour {
       Disappear
    }
    [SerializeField] private DoorTypes m_DoorTypes;
+   AudioSource source;
+    [SerializeField] AudioClip OpenClose;
    
    
    [Header("Modifiers")]
@@ -30,6 +32,7 @@ public class DoorTriggeredCheck : MonoBehaviour {
    private void Start() {
       
       m_Animator = GetComponent<Animator>(); 
+      source = GetComponent<AudioSource>();
    }
    private void Update() {
 
@@ -38,6 +41,7 @@ public class DoorTriggeredCheck : MonoBehaviour {
             case DoorTypes.OpenNClose:
                if (m_OpenDoor & m_Triggered < m_Triggers.Length && m_CoroutineBuffer == false) {
                   m_Animator.SetBool("isOpen", false);
+                  source.PlayOneShot(OpenClose);
                   //gameObject.GetComponent<Renderer>().enabled = true;
                   gameObject.GetComponentInChildren<Transform>().gameObject.GetComponentInChildren<Collider>().enabled = true;
                   m_OpenDoor = false;
@@ -80,6 +84,7 @@ public class DoorTriggeredCheck : MonoBehaviour {
          m_Triggered += t;
          if (m_Triggered >= m_Triggers.Length && m_CoroutineBuffer == false) {
             m_OpenDoor = true;
+            source.PlayOneShot(OpenClose);
             StartCoroutine(OpenDoor());
             m_Animator.SetBool("isOpen", true);
            if(!puzzleSolved)

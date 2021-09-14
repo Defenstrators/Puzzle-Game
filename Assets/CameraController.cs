@@ -8,6 +8,9 @@ public class CameraController : MonoBehaviour
     [SerializeField] float mouseSense; // multiplyer for camera movement
 
     [SerializeField] float lookLimiter; // how far up/down the player can look in degrees
+    [SerializeField] Animator animator;
+    [SerializeField] AudioSource source;
+    [SerializeField] AudioClip deathSound;
 
     float cameraRotation;
     public bool cutScene; // if the player is currently in a cutscene
@@ -15,6 +18,7 @@ public class CameraController : MonoBehaviour
     private void Start() 
     {
         mouseSense = PlayerPrefs.GetFloat("mouseSence");
+        source.GetComponent<AudioSource>();
     }
     void Update()
     {
@@ -35,5 +39,21 @@ public class CameraController : MonoBehaviour
     public void ChangeLookLimiters(float lookLimit)
     {
         lookLimiter = lookLimit;
+    }
+
+    public void PlayerRespawnEvent()
+    {
+        StartCoroutine("RespawnEvent");
+    }
+
+    IEnumerator RespawnEvent()
+    {
+        source.PlayOneShot(deathSound);
+        cutScene = true;
+        animator.Play("AnimatorImageFadeToBlack");
+        yield return new WaitForSeconds(0.2f);
+        animator.Play("AnimatorImageFadeToNormal");
+        yield return new WaitForSeconds(1f);
+        cutScene = false;
     }
 }

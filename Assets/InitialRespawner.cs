@@ -13,6 +13,5 @@ public string[] tags;
           gameObject.GetComponentInParent<Respawner>().Hit1stTrigger(other.gameObject);
           print("cube hit trigger");
       }
-      
   }
 }

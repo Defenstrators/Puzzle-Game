@@ -13,13 +13,15 @@ public class Respawner : MonoBehaviour
     GameObject _Object;
     float intesity;
     float currentTime;
+    GameObject player;
    
     private void OnTriggerEnter(Collider other) 
     {
         if(other.tag == "Player")
-        {   if(respawnAtCheckpoint) other.transform.position = spawnpoint;
-            else gameObject.GetComponentInParent<RoomManager>().resetRoom();
-            
+        {       
+            player = other.gameObject;
+            StartCoroutine("PlayerRespawn");
+            print("playerRespawnEvent!");
         }
         else if(objectRespawnTags.Contains(other.tag))
         {
@@ -44,14 +46,22 @@ public class Respawner : MonoBehaviour
     {
        if(lerping)
        {
-            intesity = Mathf.Lerp(-1, 1, currentTime);
-            
-            if(currentTime <= objectFadeTime) currentTime += Time.deltaTime;
+        intesity = Mathf.Lerp(-1, 1, currentTime);
+        if(currentTime <= objectFadeTime) currentTime += Time.deltaTime;
 
-            foreach(Material material in _Object.GetComponentInChildren<Renderer>().materials)
-            {
-                material.SetFloat("DissolveAmount", intesity);     
-            }
+        foreach(Material material in _Object.GetComponentInChildren<Renderer>().materials)
+        {
+            material.SetFloat("DissolveAmount", intesity);     
+        }
+        
        }
+    }
+
+    IEnumerator PlayerRespawn()
+    {
+            player.GetComponent<CameraController>().PlayerRespawnEvent();
+            yield return new WaitForSeconds(0.2f);
+            if(respawnAtCheckpoint) player.transform.position = spawnpoint;
+            else gameObject.GetComponentInParent<RoomManager>().resetRoom();
     }
 }
