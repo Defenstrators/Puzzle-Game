@@ -9,8 +9,8 @@ public class Elevator : MonoBehaviour
     [SerializeField] float buttonInteractionDistance;
     [SerializeField] float elevatorSpeed;
     GameObject player;
-    int currentLocation;
-    int completedPuzzles = -1;
+   [SerializeField] int currentLocation = -1;
+   [SerializeField]  int completedPuzzles = -1;
     private void Start() {
         player = Object.FindObjectOfType<PlayerMovement>().gameObject;
     }
@@ -23,6 +23,7 @@ public class Elevator : MonoBehaviour
     {
         if(Vector3.Distance(player.transform.position, buttonLocation.transform.position) < buttonInteractionDistance)
         {
+            print("close enough");
             if(Input.GetKeyDown(KeyCode.E) && currentLocation < completedPuzzles)
             {
                 currentLocation ++;
@@ -42,4 +43,9 @@ public class Elevator : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
     }
+
+    private void OnTriggerEnter(Collider other) {
+        other.transform.parent = this.transform;
+    }
+    
 }

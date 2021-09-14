@@ -20,6 +20,10 @@ public class NewMovingPlatforms : MonoBehaviour
     AudioSource source;
     [SerializeField] AudioClip movingSound;
     [SerializeField] AudioClip stopingSound;
+    [SerializeField] bool requiredButtons;
+    [SerializeField] float buttonCount;
+    float buttonsPressed;
+
 
     private void Start() {
       //  source = gameObject.GetComponent<AudioSource>();
@@ -27,28 +31,35 @@ public class NewMovingPlatforms : MonoBehaviour
     }
     void Update()
     {
-        if(Vector3.Distance(transform.position, destinations[currentDestination].transform.position) < 0.1)
+        if(buttonCount <= buttonsPressed)
         {
-            if(currentDestination == destinations.Length -1) reversing = true;
-            if(reversing) currentDestination--;
-            else currentDestination++;
-            if(currentDestination == 0) reversing = false;
-//            source.Stop();
-          //  source.PlayOneShot(stopingSound);
-            stopped = true;
-            Invoke("StartPlatform", stopTime);
+            if(Vector3.Distance(transform.position, destinations[currentDestination].transform.position) < 0.1)
+            {
+                if(currentDestination == destinations.Length -1) reversing = true;
+                if(reversing) currentDestination--;
+                else currentDestination++;
+                if(currentDestination == 0) reversing = false;
+                // source.Stop();
+                //source.PlayOneShot(stopingSound);
+                stopped = true;
+                Invoke("StartPlatform", stopTime);
+            }
+
+            if(!stopped) transform.position = Vector3.MoveTowards(transform.position, destinations[currentDestination].transform.position, speed * Time.deltaTime);
+
+            if(playerParented)
+            {
+                if(Vector3.Distance(transform.position, player.transform.position) > 2.5)
+                {
+                    player.transform.parent = null;
+                    playerParented = false;
+                }
+            }
         }
-
-         if(!stopped) transform.position = Vector3.MoveTowards(transform.position, destinations[currentDestination].transform.position, speed * Time.deltaTime);
-
-         if(playerParented)
-         {
-             if(Vector3.Distance(transform.position, player.transform.position) > 2.5)
-             {
-                 player.transform.parent = null;
-                 playerParented = false;
-             }
-         }
+    }
+    public void ButtonPressed()
+    {
+        buttonsPressed ++;
     }
 
     void OnTriggerEnter(Collider other) 
