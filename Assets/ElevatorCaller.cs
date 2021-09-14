@@ -14,7 +14,7 @@ public class ElevatorCaller : MonoBehaviour
            if(Input.GetKeyDown(KeyCode.E))
            {
                elevator.PuzzleSolved();
-               GetComponent<MovingPlatformSwitch>().enabled = false;
+               GetComponent<ElevatorCaller>().enabled = false;
            }
        } 
     }
