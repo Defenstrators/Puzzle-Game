@@ -1085,20 +1085,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpHeight: 1.8
   gravity: -30
-  moveSpeed: 2.5
+  moveSpeed: 2
   fullSpeedTimer: 0.2
   coyoteTime: 0.2
   sprintingMultiplyer: 3
   acceleration: 2
   deceleration: 1
   playerVelocity: {x: 0, y: 0, z: 0}
-  airSpeedMultiplyer: 1
+  airSpeedMultiplyer: 0.7
   moveSpeedMultiplyer: 1
   animator: {fileID: 2863496883577805423}
   yLookLimitation: 80
   move: {x: 0, y: 0, z: 0}
   maxVelocity: {x: 0.05, y: 0, z: 0.05}
-  airControllMultiplyer: {x: 0.07, y: 0, z: 0.05}
+  airControllMultiplyer: {x: 0.03, y: 0, z: 0.03}
 --- !u!143 &7513840002255144926
 CharacterController:
   m_ObjectHideFlags: 0

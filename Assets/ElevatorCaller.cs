@@ -7,14 +7,17 @@ public class ElevatorCaller : MonoBehaviour
     [SerializeField] float range;
     [SerializeField] GameObject player;
     [SerializeField] Elevator elevator;
+    public float count;
+    public bool multipleButtons;
     void Update()
     {
        if(Vector3.Distance(this.transform.position, player.transform.position) < range)
        {
            if(Input.GetKeyDown(KeyCode.E))
            {
-               elevator.PuzzleSolved();
-               GetComponent<ElevatorCaller>().enabled = false;
+             if(!multipleButtons)  elevator.PuzzleSolved();
+             else elevator.SemiPuzzleSolved(count);
+             GetComponent<ElevatorCaller>().enabled = false;
            }
        } 
     }
