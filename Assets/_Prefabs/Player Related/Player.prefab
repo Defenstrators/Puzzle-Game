@@ -1083,9 +1083,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4d4618fe8a6a7946ace63c3aa542a20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpHeight: 1.8
+  jumpHeight: 1.7
   gravity: -30
-  moveSpeed: 2
+  moveSpeed: 2.5
   fullSpeedTimer: 0.2
   coyoteTime: 0.2
   sprintingMultiplyer: 3
@@ -1098,7 +1098,7 @@ MonoBehaviour:
   yLookLimitation: 80
   move: {x: 0, y: 0, z: 0}
   maxVelocity: {x: 0.05, y: 0, z: 0.05}
-  airControllMultiplyer: {x: 0.03, y: 0, z: 0.03}
+  airControllMultiplyer: {x: 0.036, y: 0, z: 0.036}
 --- !u!143 &7513840002255144926
 CharacterController:
   m_ObjectHideFlags: 0

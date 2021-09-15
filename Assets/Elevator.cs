@@ -25,6 +25,7 @@ public class Elevator : MonoBehaviour
     public void SemiPuzzleSolved(float i)
     {
         completedPuzzles += i;
+        print("semi");
     }
     private void Update() 
     {
@@ -42,6 +43,11 @@ public class Elevator : MonoBehaviour
             elevatorLight.GetComponent<Renderer>().material = green;
         }
         else elevatorLight.GetComponent<Renderer>().material = red;
+
+        if (Input.GetKeyDown(KeyCode.F6)) completedPuzzles++;
+            
+
+        
     }
 
 
