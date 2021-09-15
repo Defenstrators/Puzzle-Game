@@ -7,6 +7,8 @@ public class ElevatorCaller : MonoBehaviour
     [SerializeField] float range;
     [SerializeField] GameObject player;
     [SerializeField] Elevator elevator;
+    [SerializeField] Material onMaterial;
+    [SerializeField] GameObject lightBar;
     public float count;
     public bool multipleButtons;
     void Update()
@@ -17,6 +19,7 @@ public class ElevatorCaller : MonoBehaviour
            {
              if(!multipleButtons)  elevator.PuzzleSolved();
              else elevator.SemiPuzzleSolved(count);
+             lightBar.GetComponent<Renderer>().material = onMaterial;
              GetComponent<ElevatorCaller>().enabled = false;
            }
        } 
