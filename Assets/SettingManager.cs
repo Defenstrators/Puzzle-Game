@@ -47,8 +47,7 @@ public class SettingManager : MonoBehaviour
             }
             
             Application.targetFrameRate = PlayerPrefs.GetInt("FPS");
-            QualitySettings.SetQualityLevel(Mathf.FloorToInt(graphicsLevel));
-
+            QualitySettings.SetQualityLevel(PlayerPrefs.GetInt("GraphicsTeir"));
         InitiliseSliders();
     }
     private void Update() 
@@ -66,15 +65,17 @@ public class SettingManager : MonoBehaviour
         {
             case 0:
             grahpicsText.text = "Low";
+            PlayerPrefs.SetInt("GraphicsTeir", 0);
             break;
             case 1:
             grahpicsText.text = "Medium";
+            PlayerPrefs.SetInt("GraphicsTeir", 1);
             break;
             case 2:
             grahpicsText.text = "High";
+            PlayerPrefs.SetInt("GraphicsTeir", 2);
             break;
         }
-
     }
     public void SaveSettings() 
     { 

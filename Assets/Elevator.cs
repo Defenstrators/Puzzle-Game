@@ -9,8 +9,11 @@ public class Elevator : MonoBehaviour
     [SerializeField] float buttonInteractionDistance;
     [SerializeField] float elevatorSpeed;
     GameObject player;
-   [SerializeField] int currentLocation = -1;
-   [SerializeField]  float completedPuzzles = -1;
+    [SerializeField] int currentLocation = -1;
+    [SerializeField]  float completedPuzzles = -1;
+    [SerializeField] GameObject elevatorLight;
+    [SerializeField] Material red;
+    [SerializeField] Material green;
     private void Start() {
         player = Object.FindObjectOfType<PlayerMovement>().gameObject;
     }
@@ -34,6 +37,11 @@ public class Elevator : MonoBehaviour
                 StartCoroutine("MoveToDestination");
             }
         }
+        if(currentLocation < completedPuzzles)
+        {
+            elevatorLight.GetComponent<Renderer>().material = green;
+        }
+        else elevatorLight.GetComponent<Renderer>().material = red;
     }
 
 
