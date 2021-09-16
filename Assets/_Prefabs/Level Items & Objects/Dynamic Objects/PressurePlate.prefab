@@ -24,7 +24,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5140311031339437731}
   - component: {fileID: 3404308576317898251}
-  - component: {fileID: 8282814846107731868}
+  - component: {fileID: 1742272304}
   m_Layer: 3
   m_Name: PressurePlate
   m_TagString: Untagged
@@ -66,8 +66,8 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 8a1be3dc003656a4d95f320aded8c57a, type: 2}
   - {fileID: 2100000, guid: dfd36d090d60fa04e92754f8d0754b74, type: 2}
   externalDoors: {fileID: 0}
---- !u!65 &8282814846107731868
-BoxCollider:
+--- !u!135 &1742272304
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -77,8 +77,22 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.3, y: 0.3, z: 1.3}
-  m_Center: {x: 0, y: 0.38, z: 0}
+  m_Radius: 0.86285263
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!64 &136512960
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6156738384809317872}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -754667642709018251, guid: efa423ecc507c234c89159a2886f1e91, type: 3}
 --- !u!95 &587917278
 Animator:
   serializedVersion: 3
@@ -211,6 +225,11 @@ GameObject:
 --- !u!4 &6065748829043831842 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: efa423ecc507c234c89159a2886f1e91, type: 3}
+  m_PrefabInstance: {fileID: 6027899950671287241}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6156738384809317872 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 492660243433063993, guid: efa423ecc507c234c89159a2886f1e91, type: 3}
   m_PrefabInstance: {fileID: 6027899950671287241}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &523858230396465170 stripped
