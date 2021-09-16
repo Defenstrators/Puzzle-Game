@@ -1739,8 +1739,12 @@ MonoBehaviour:
 
     Right: D
 
-    Drop/Pickup
-    Object: E
+    Jump: Spacebar
+
+    Sprit:
+    L-Shift
+
+    Drop/Pickup Object: E
 
     Throw Object/Time Slow: Left Click'
 --- !u!222 &749911939
