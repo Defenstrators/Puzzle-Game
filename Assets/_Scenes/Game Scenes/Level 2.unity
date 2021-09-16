@@ -9277,7 +9277,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh92596
+  m_Name: pb_Mesh119956
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -9569,6 +9569,10 @@ PrefabInstance:
     - target: {fileID: 2746011096938607565, guid: d36fbf8cf49be7743a14a883d80380bb, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2746011097764298380, guid: d36fbf8cf49be7743a14a883d80380bb, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d36fbf8cf49be7743a14a883d80380bb, type: 3}
@@ -22123,7 +22127,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1568585057}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -30.759998, y: -0.25, z: -4.0899997}
+  m_LocalPosition: {x: -30.759998, y: -0.79, z: -4.0899997}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1177691116}
@@ -27061,6 +27065,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_DoorTypes: 1
+  OpenClose: {fileID: 0}
   m_OpenDoor: 0
   m_TimeToClose: 0
   m_Triggers:
