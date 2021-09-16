@@ -87,11 +87,11 @@ public class DoorTriggeredCheck : MonoBehaviour {
             source.PlayOneShot(OpenClose);
             StartCoroutine(OpenDoor());
             m_Animator.SetBool("isOpen", true);
-           if(!puzzleSolved)
-           {
-              elevator.PuzzleSolved();
-              puzzleSolved = true;
-           } 
+           if(!puzzleSolved && elevator != null)
+            {
+               elevator.PuzzleSolved();
+               puzzleSolved = true;
+            } 
          }
       }
    }
