@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour {
     public GameObject loadingScreen;   // Transition.
     private int _CurrentScene;       // Use to switch from level 1 and on.
     private int sceneRemoval = 1;  // Scene to be removed.
+    [SerializeField] AudioSource source;
 
     public Animator transitionAnimator;
 
@@ -98,10 +99,8 @@ public class GameManager : MonoBehaviour {
         transitionAnimator.Play("Open");
     }
 
-    // private void Update() {
-    //     if(Input.GetKeyDown(KeyCode.Escape))
-    //     {
-    //         Application.Quit();
-    //     }
-    // }
+     private void FixedUpdate() 
+     {
+        source.volume = PlayerPrefs.GetFloat("audioLevel");
+     }
 }

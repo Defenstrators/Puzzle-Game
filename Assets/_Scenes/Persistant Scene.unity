@@ -230,6 +230,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loadingScreen: {fileID: 842075384}
+  source: {fileID: 875180591}
   transitionAnimator: {fileID: 842075385}
 --- !u!4 &875180590
 Transform:
