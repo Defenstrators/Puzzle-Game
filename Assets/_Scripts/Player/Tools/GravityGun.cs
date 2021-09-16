@@ -67,10 +67,7 @@ public class GravityGun : MonoBehaviour
                 {
                     DropObject(true);     
                 }
-                if(Input.mouseScrollDelta.y > 0 || Input.mouseScrollDelta.y < 0)
-                {
-                    print("It Works!");
-                }  
+               
 
                 if(Input.mouseScrollDelta.y > 0 || Input.mouseScrollDelta.y < 0)
                 {
@@ -111,7 +108,7 @@ public class GravityGun : MonoBehaviour
                                 grabbedObject.transform.rotation = new Quaternion(0, 0, 0, 0); // reset the objects rotation, so when when the player roatats, it will rotate on the correct axis.
                                 grabbedObjectOffset = grabbedObject.GetComponent<GrabbableObject>().objectOffset;
                                 toolManager.ToolChange(2);
-                                StartCoroutine("Lazer");
+                                
 
                             
                             }
@@ -147,18 +144,18 @@ public class GravityGun : MonoBehaviour
                 cube.SetActive(false);
                // objectTarget.transform.position = objectTargetOrigionalLocation.transform.position;
                 toolManager.ToolChange(1);
-               StopCoroutine("Lazer");
-               
     }
     IEnumerator Lazer()
     {
         print("Corotienecalled");
-        while(!grabbedObject)
+        while(true)
         {
+            if (!grabbedObject)
+            {
                 float offset = range / lazerResolution;
                 float currentOffset = 0;
                 Vector3 randomisedPosition;
-                for(int i = 0; i < lazerResolution; i++)
+                for (int i = 0; i < lazerResolution; i++)
                 {
                     randomisedPosition = new Vector3(MuzzlePoint.transform.position.x, MuzzlePoint.transform.position.y, MuzzlePoint.transform.position.z);
                     randomisedPosition += (MuzzlePoint.transform.forward * currentOffset);
@@ -166,7 +163,9 @@ public class GravityGun : MonoBehaviour
                     lazerLineRenderer.SetPosition(i, randomisedPosition);
                     currentOffset += offset;
                 }
-                yield return new WaitForSeconds(laserUpdateTime);
+
+            }
+          yield return new WaitForSeconds(laserUpdateTime);
         }
     }
 }
